@@ -52,7 +52,7 @@ export class SampleComponent implements OnInit {
           {
             name: 'Home',
             isLink: true,
-            link: '/'
+            link: '/home'
           },
           {
             name: 'Leads',
