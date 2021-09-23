@@ -1,0 +1,56 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <!-- content-header component -->
+        <app-content-header [contentHeader]="contentHeader"></app-content-header>
+        <div class="row" id="table-striped">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Leads List</h4>
+                    </div>
+                    <div class="card-body">
+
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Action</th>
+                                    <th>Business Name</th>
+                                    <th>Contact No.</th>
+                                    <th>City Name</th>
+                                    <th>Full Name</th>
+                                    <th>Address</th>
+                                    <th>Pincode</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let leads of leadsList | filter: data | paginate : { itemsPerPage: pageSize, currentPage: page, totalItems: count }; let i=index">
+                                    <td>{{i+1}}</td>
+                                    <!-- <td>
+                                        <a routerLink="/adminonboard/onboarding/{{leads._id}}/{{leads.phone}}/{{leads.token}}"><button
+                        type="button" class="btn btn-outline-info">Onboard</button></a>
+                                    </td> -->
+                                    <td>
+                                        <button type="button" class="btn btn-outline-info">Onboard</button>
+                                    </td>
+                                    <td>{{leads.business_name}}</td>
+                                    <td>{{leads.phone}}</td>
+                                    <td>{{leads.city_name}}</td>
+                                    <td>{{leads.full_name}}</td>
+                                    <td>{{leads.address}}</td>
+                                    <td>{{leads.pincode}}</td>
+                                    <td>{{leads.date}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true" (pageChange)="handlePageChange($event)" class="d-flex justify-content-center"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
