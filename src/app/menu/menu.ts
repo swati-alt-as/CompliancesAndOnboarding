@@ -2,12 +2,20 @@ import { CoreMenu } from '@core/types'
 
 export const menu: CoreMenu[] = [
   {
-    id: 'home',
-    title: 'Home',
-    translate: 'MENU.HOME',
+    id: 'dashboard',
+    title: 'Dashboard',
+    translate: 'Dashboard',
     type: 'item',
     icon: 'home',
-    url: 'home'
+    url: 'dashboard'
+  },
+  {
+    id: 'lead',
+    title: 'Leads',
+    translate: 'Leads',
+    type: 'item',
+    icon: 'list',
+    url: 'leads'
   },
   // {
   //   id: 'sample',
@@ -17,12 +25,5 @@ export const menu: CoreMenu[] = [
   //   icon: 'file',
   //   url: 'sample'
   // },
-  {
-    id: 'lead',
-    title: 'Leads',
-    translate: 'Leads',
-    type: 'item',
-    icon: 'list',
-    url: 'lead'
-  }
+ 
 ]

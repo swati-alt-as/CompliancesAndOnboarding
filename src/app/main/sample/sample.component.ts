@@ -6,8 +6,7 @@ import { locale as de } from './i18n/de'
 import { locale as pt } from './i18n/pt'
 
 import { CoreTranslationService } from '@core/services/translation.service'
-import { LeadsService } from '../../services/business/leads.service';
-import { ToastrserviceService } from '../../services/notification/toastrservice.service'
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-sample',
@@ -17,22 +16,11 @@ import { ToastrserviceService } from '../../services/notification/toastrservice.
 export class SampleComponent implements OnInit {
   public contentHeader: object
 
-
-  message: string;
-  result: any = {};
-
-  leadsList: any = {};
-  page = 1;
-  count = 0;
-  pageSize = 10;
-  pageSizes = [5, 10, 15];
-  data: string;
-
   /**
    *
    * @param {CoreTranslationService} _coreTranslationService
    */
-  constructor(private lead: LeadsService, private _coreTranslationService: CoreTranslationService) {
+  constructor(private _coreTranslationService: CoreTranslationService, private spinnerService: NgxSpinnerService) {
     this._coreTranslationService.translate(en, fr, de, pt)
   }
 
@@ -50,38 +38,19 @@ export class SampleComponent implements OnInit {
         type: '',
         links: [
           {
-            name: 'Home',
+            name: 'Dashboard',
             isLink: true,
-            link: '/home'
+            link: '/dashboard'
           },
           {
-            name: 'Leads',
+            name: 'Sample',
             isLink: false
           }
         ]
       }
     }
 
-    // this.spinnerService.show();
-    this.lead.getAllLeads().subscribe((result) => {
-      // this.spinnerService.hide();
-      if (!(result["items"].length === 0)) {
-        this.leadsList = result["items"];
-        // console.log(this.leadsList)
-        this.count = result["items"].length;
-      }
-    })
   }
 
   
-  handlePageChange(event: number): void {
-    this.page = event;
-    this.ngOnInit();
-  }
-
-  handlePageSizeChange(event: any): void {
-    this.pageSize = event.target.value;
-    this.page = 1;
-    this.ngOnInit();
-  }
 }

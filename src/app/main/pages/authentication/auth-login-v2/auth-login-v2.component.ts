@@ -108,6 +108,10 @@ export class AuthLoginV2Component implements OnInit {
    * On init
    */
   ngOnInit(): void {
+    if (localStorage.getItem('isLoggedIn') == "true") {
+      this._router.navigate(['/dashboard'])
+    }
+
     this.loginForm = this._formBuilder.group({
       employee_code: ['', Validators.required],
       password: ['', Validators.required]
@@ -142,19 +146,19 @@ export class AuthLoginV2Component implements OnInit {
         this.toastr.showSuccess(this.message, "Done!")
         localStorage.setItem('isLoggedIn', "true");
         localStorage.setItem("employeeData", JSON.stringify(result["items"]));
-        this._router.navigate(['/home'])
+        this._router.navigate(['/dashboard'])
         // setTimeout(() => {
         //   window.location.reload();
         // }, 1000);
       } else if (result["status"] == false) {
         this.message = result["message"];
         this.toastr.showError(this.message, "Error!")
-        this._router.navigate(['/pages/authentication/login-v2'])
+        this._router.navigate(['/pages/authentication/login'])
         setTimeout(() => {
           window.location.reload();
         }, 5000);
       } else {
-        this._router.navigate(['/pages/authentication/login-v2'])
+        this._router.navigate(['/pages/authentication/login'])
       }
     },
       (error: HttpErrorResponse) => {

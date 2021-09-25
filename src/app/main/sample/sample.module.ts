@@ -11,15 +11,18 @@ import { HomeComponent } from './home.component';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { AuthGuard } from '../../guards/auth.guard';    
+
 const routes = [
   {
-    path: 'lead',
-    component: SampleComponent,
-    data: { animation: 'lead' }
+    path: 'sample',
+    component: SampleComponent, canActivate : [AuthGuard],
+    data: { animation: 'sample' }
   },
   {
     path: 'home',
-    component: HomeComponent,
+    component: HomeComponent, canActivate : [AuthGuard],
     data: { animation: 'home' }
   }
 ];
@@ -28,7 +31,8 @@ const routes = [
   declarations: [SampleComponent, HomeComponent],
   imports: [RouterModule.forChild(routes), ContentHeaderModule, TranslateModule, CoreCommonModule,
     NgxPaginationModule,
+    NgxSpinnerModule,
     Ng2SearchPipeModule,],
   exports: [SampleComponent, HomeComponent]
 })
-export class SampleModule {}
+export class SampleModule { }

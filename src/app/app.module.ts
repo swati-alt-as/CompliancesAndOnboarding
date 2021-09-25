@@ -18,6 +18,8 @@ import { coreConfig } from 'app/app-config';
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from 'app/main/sample/sample.module';
+import { DashboardModule } from 'app/main/dashboard/dashboard.module';
+import { BusinessModule } from 'app/main/business/business.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from "../environments/environment";
@@ -32,9 +34,7 @@ import 'firebase/storage';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
-
-
+import { NgxSpinnerModule } from "ngx-spinner";    
 
 const appRoutes: Routes = [
   {
@@ -43,14 +43,9 @@ const appRoutes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/pages/authentication/login-v2',
+    redirectTo: '/pages/authentication/login',
     pathMatch: 'full'
   },
-  // {
-  //   path: '',
-  //   redirectTo: '/home',
-  //   pathMatch: 'full'
-  // },
   {
     path: '**',
     redirectTo: '/pages/miscellaneous/error' //Error 404 - Page not found
@@ -71,11 +66,12 @@ const appRoutes: Routes = [
 
     NgxPaginationModule,
     Ng2SearchPipeModule,
+    NgxSpinnerModule,
     //NgBootstrap
     NgbModule,
     ToastrModule.forRoot({
       closeButton: true,
-      timeOut: 50000, // 5 seconds
+      timeOut: 3000, // 5 seconds
       progressBar: true,
     }),
 
@@ -88,6 +84,8 @@ const appRoutes: Routes = [
     // App modules
     LayoutModule,
     SampleModule,
+    DashboardModule,
+    BusinessModule,
     FormsModule,
     ReactiveFormsModule,
     AngularFireStorageModule,
