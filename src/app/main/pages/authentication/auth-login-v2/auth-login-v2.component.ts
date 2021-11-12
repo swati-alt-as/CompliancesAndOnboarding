@@ -1,16 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { Router } from '@angular/router';
 import { CoreConfigService } from '@core/services/config.service';
-// import { NgxSpinnerService } from "ngx-spinner";
 import { LoginService } from '../../../../services/authentication/login.service';
-import { ToastrserviceService } from '../../../../services/notification/toastrservice.service'
-import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrserviceService } from '../../../../services/notification/toastrservice.service';
 
-import { ToastrService } from 'ngx-toastr';
 interface paramData {
   employee_code: string,
   password: string,
@@ -52,6 +50,10 @@ export class AuthLoginV2Component implements OnInit {
     private toastr: ToastrserviceService
     // private toastr: ToastrService
   ) {
+     // redirect to home if already logged in
+     if (localStorage.getItem('isLoggedIn')) {
+      this._router.navigate(['/dashboard']);
+    }
     this._unsubscribeAll = new Subject();
 
     // Configure the layout
@@ -108,17 +110,14 @@ export class AuthLoginV2Component implements OnInit {
    * On init
    */
   ngOnInit(): void {
-    if (localStorage.getItem('isLoggedIn') == "true") {
-      this._router.navigate(['/dashboard'])
-    }
-
+   
     this.loginForm = this._formBuilder.group({
       employee_code: ['', Validators.required],
       password: ['', Validators.required]
     });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/dashboard';
 
     // Subscribe to config changes
     this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
@@ -146,23 +145,23 @@ export class AuthLoginV2Component implements OnInit {
         this.toastr.showSuccess(this.message, "Done!")
         localStorage.setItem('isLoggedIn', "true");
         localStorage.setItem("employeeData", JSON.stringify(result["items"]));
-        this._router.navigate(['/dashboard'])
+        this._router.navigate(['/dashboard']);
         // setTimeout(() => {
         //   window.location.reload();
         // }, 1000);
       } else if (result["status"] == false) {
         this.message = result["message"];
-        this.toastr.showError(this.message, "Error!")
-        this._router.navigate(['/pages/authentication/login'])
+        this.toastr.showError(this.message, "Error!");
+        this._router.navigate(['/pages/authentication/login']);
         setTimeout(() => {
           window.location.reload();
         }, 5000);
       } else {
-        this._router.navigate(['/pages/authentication/login'])
+        this._router.navigate(['/pages/authentication/login']);
       }
     },
       (error: HttpErrorResponse) => {
-        this.toastr.showError(error.error.message, "Error!")
+        this.toastr.showError(error.error.message, "Error!");
         this.loading = false;        
       })
   }

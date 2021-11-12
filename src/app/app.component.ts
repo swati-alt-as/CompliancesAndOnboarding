@@ -108,20 +108,6 @@ export class AppComponent implements OnInit, OnDestroy {
       // const browserLang = this._translateService.getBrowserLang();
       // this._translateService.use(browserLang.match(/en|fr|de|pt/) ? browserLang : 'en');
 
-      /**
-       * ! Fix : ngxTranslate
-       * ----------------------------------------------------------------------------------------------------
-       */
-
-      /**
-       *
-       * Using different language than the default ('en') one i.e French?
-       * In this case, you may find the issue where application is not properly translated when your app is initialized.
-       *
-       * It's due to ngxTranslate module and below is a fix for that.
-       * Eventually we will move to the multi language implementation over to the Angular's core language service.
-       *
-       **/
 
       // Set the default language to 'en' and then back to 'fr'.
 
@@ -130,11 +116,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this._translateService.setDefaultLang(appLanguage);
       });
 
-      /**
-       * !Fix: ngxTranslate
-       * ----------------------------------------------------------------------------------------------------
-       */
-
+     
       // Layout
       //--------
 

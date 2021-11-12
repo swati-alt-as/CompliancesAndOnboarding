@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
 
   constructor() { }
-  public contentHeader: object
+  public contentHeader: object;
 
   ngOnInit(): void {
     this.contentHeader = {

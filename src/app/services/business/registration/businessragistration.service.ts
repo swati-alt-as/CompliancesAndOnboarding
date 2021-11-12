@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from "rxjs";
+import { throwError } from "rxjs";
 import { retry, catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -10,10 +9,7 @@ import { retry, catchError } from 'rxjs/operators';
 })
 export class BusinessragistrationService {
 
-  // rooturl = "http://192.168.1.26:3001/";
   rooturl = "https://fablo-food-business-oodq3.ondigitalocean.app/business/";
-  isLoggedIn: boolean = false;
-  public redirectUrl: string;
 
   constructor(private http: HttpClient) { }
 

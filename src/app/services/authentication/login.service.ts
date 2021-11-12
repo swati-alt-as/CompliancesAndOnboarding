@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from "rxjs";
 import { retry, catchError } from 'rxjs/operators';
@@ -9,7 +9,6 @@ import { retry, catchError } from 'rxjs/operators';
 })
 export class LoginService {
 
-  // rooturl = "http://localhost:4300/";
   rooturl = "https://fablo-administrator-ahyzw.ondigitalocean.app/employee/";
 
   constructor(private http: HttpClient) { }

@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table datatable class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -39,7 +39,6 @@
                                     <th>Contact No.</th>
                                     <th>City Name</th>
                                     <th>Full Name</th>
-                                    <th>Address</th>
                                     <th>Pincode</th>
                                     <th>Date</th>
                                 </tr>
@@ -47,10 +46,6 @@
                             <tbody>
                                 <tr *ngFor="let leads of leadsList | filter: data | paginate : { itemsPerPage: pageSize, currentPage: page, totalItems: count }; let i=index">
                                     <td>{{i+1}}</td>
-                                    <!-- <td>
-                                        <a routerLink="/adminonboard/onboarding/{{leads._id}}/{{leads.phone}}/{{leads.token}}"><button
-                        type="button" class="btn btn-outline-info">Onboard</button></a>
-                                    </td> -->
                                     <td>
                                         <button type="button" class="btn btn-outline-info">Onboard</button>
                                     </td>
@@ -58,7 +53,6 @@
                                     <td>{{leads.phone}}</td>
                                     <td>{{leads.city_name}}</td>
                                     <td>{{leads.full_name}}</td>
-                                    <td>{{leads.address}}</td>
                                     <td>{{leads.pincode}}</td>
                                     <td>{{leads.date}}</td>
                                 </tr>
@@ -72,6 +66,3 @@
 
     </div>
 </div>
-<!-- <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
-    <p style="color: rgb(245, 109, 46)">Please Wait... </p>
-</ngx-spinner> -->

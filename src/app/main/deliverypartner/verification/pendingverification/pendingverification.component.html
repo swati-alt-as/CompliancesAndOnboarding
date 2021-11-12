@@ -1,0 +1,275 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <!-- content-header component -->
+        <app-content-header [contentHeader]="contentHeader"></app-content-header>
+        <div class="row" id="table-striped">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Pending Order List</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6 select-box-bg">
+                                <div class="d-flex justify-content-between align-items-center m-1">
+                                    <label class="d-flex align-items-center">Show
+                                        <select (change)="handlePageSizeChange($event)" class="form-control mx-25">
+                                            <option *ngFor="let size of pageSizes" [ngValue]="size">
+                                                {{ size }}
+                                            </option>
+                                        </select>
+                                        Entries</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 d-flex justify-content-md-end">
+                                <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pl-1 pl-md-0 pb-md-0">
+                                    <label class="d-flex align-items-center"><span class="search">Search</span> <input
+                                            type="text" class="form-control search-form-control"
+                                            placeholder="Type to search" [(ngModel)]="data"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive-lg">
+                        <table datatable class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Contact Number</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let partners of pendingList | filter: data | paginate : { itemsPerPage: pageSize, currentPage: page, totalItems: count }; let i=index">
+                                    <td>{{i+1}}</td>
+
+                                    <td>{{partners.name}}</td>
+                                    <td>{{partners.address}}</td>
+                                    <td>{{partners.phone}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-info" (click)="modalOpenSuccess(modalSuccess, partners._id)" rippleEffect>More
+                                            Info</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true" (pageChange)="handlePageChange($event)" class="d-flex pagination-section justify-content-center"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<ng-template #modalSuccess let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel160">Delivery Partner Details</h5>
+        <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" tabindex="0" ngbAutofocus>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Basic Details</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">Name : </div>
+                            <div class="col-sm-6">{{this.partnerDetails.BasicDetails.name}}</div>
+                            <div class="col-sm-6 mt-2">Address : </div>
+                            <div class="col-sm-6 mt-2">{{this.partnerDetails.BasicDetails.address}}</div>
+                            <div class="col-sm-6 mt-2">Gender : </div>
+                            <div class="col-sm-6 mt-2">{{this.partnerDetails.BasicDetails.gender}}</div>
+                            <div class="col-sm-6 mt-2">Date of Birth : </div>
+                            <div class="col-sm-6 mt-2">{{this.partnerDetails.BasicDetails.dob}}</div>
+                            <div class="col-sm-6 mt-2">Contact No. : </div>
+                            <div class="col-sm-6 mt-2">{{this.partnerDetails.BasicDetails.phone}}</div>
+                            <div class="col-sm-6 mt-2">Blood Group : </div>
+                            <div class="col-sm-6 mt-2">{{this.partnerDetails.BasicDetails.blood_group}}</div>
+                            <div class="col-sm-6 mt-2">Term & Condition : </div>
+                            <div class="col-sm-6 mt-2" *ngIf="this.partnerDetails.BasicDetails.term_condition == 1">Yes</div>
+                            <div class="col-sm-6 mt-2" *ngIf="this.partnerDetails.BasicDetails.term_condition == 0">No</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Bank Details</h4>
+                        <button type="button" class="btn btn-success" *ngIf="this.partnerDetails.BasicDetails.bank_details == '1'"> Approve
+                        </button>
+                        <button type="button" class="btn btn-secondary" *ngIf="this.partnerDetails.BasicDetails.bank_details == '0'"> Not Submitted
+                        </button>
+                        <button type="button" class="btn btn-danger" *ngIf="this.partnerDetails.BasicDetails.bank_details == '3'"> Rejected
+                        </button>
+                    </div>
+                    <div class="card-body" *ngIf="(this.partnerDetails.BankDetails.status == '1' || this.partnerDetails.BankDetails.status == '2')">
+                        <div class="row">
+                            <div class="col-sm-6">Bank Beneficiary Name:</div>
+                            <div class="col-sm-6">{{this.partnerDetails.BankDetails.bankBeneficiaryName}}</div>
+                            <div class="col-sm-6 mt-2">Bank Name : </div>
+                            <div class="col-sm-6 mt-2">{{this.partnerDetails.BankDetails.bankName}}</div>
+                            <div class="col-sm-6 mt-2">IFSC Code : </div>
+                            <div class="col-sm-6 mt-2">{{this.partnerDetails.BankDetails.IFSCcode}}</div>
+                            <div class="col-sm-6 mt-2">Account Number : </div>
+                            <div class="col-sm-6 mt-2">{{this.partnerDetails.BankDetails.accountNumber}}</div>
+                            <div class="col-sm-6 mt-2">Bank Contact Id : </div>
+                            <div class="col-sm-6 mt-2">{{this.partnerDetails.BankDetails.bankContactId}}</div>
+                            <div class="col-sm-6 mt-2">Bank Beneficiary Id : </div>
+                            <div class="col-sm-6 mt-2">{{this.partnerDetails.BankDetails.bankBeneficiaryId}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Kyc Details</h4>
+                        <button type="button" class="btn btn-success" *ngIf="this.partnerDetails.BasicDetails.kyc == '1'"> Approve
+                        </button>
+                        <button type="button" class="btn btn-secondary" *ngIf="this.partnerDetails.BasicDetails.kyc == '0'"> Not Submitted
+                        </button>
+                        <button type="button" class="btn btn-danger" *ngIf="this.partnerDetails.BasicDetails.kyc == '3'"> Rejected
+                        </button>
+                    </div>
+                    <div class="card-body" *ngIf="(this.partnerDetails.KycDetails.status == '1' || this.partnerDetails.KycDetails.status == '2')">
+                        <div class="row">
+                            <div class="col-sm-6">Pancard Image : </div>
+                            <div class="col-sm-6" *ngIf="this.partnerDetails.KycDetails.pancard.image">
+                                <img src="{{this.partnerDetails.KycDetails.pancard.image}}" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-6" *ngIf="!this.partnerDetails.KycDetails.pancard.image">
+                                <img src="../../../../../assets/images/notAvailable.jpg" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-6 mt-2">Pan Number : </div>
+                            <div class="col-sm-6 mt-2">{{this.partnerDetails.KycDetails.pancard.PanNumber}}</div>
+                            <div class="col-sm-6 mt-2">Name : </div>
+                            <div class="col-sm-6 mt-2">{{this.partnerDetails.KycDetails.pancard.name}}</div>
+                            <div class="col-sm-6 mt-2">Father's Name : </div>
+                            <div class="col-sm-6 mt-2">{{this.partnerDetails.KycDetails.pancard.father_name}}</div>
+                            <div class="col-sm-6 mt-2">Date of Birth : </div>
+                            <div class="col-sm-6 mt-2">{{this.partnerDetails.KycDetails.pancard.dob}}</div>
+                            <hr>
+                            <div class="col-sm-6 mt-2">Aadhaarcard Front Image : </div>
+                            <div class="col-sm-6 mt-2" *ngIf="this.partnerDetails.KycDetails.aadharcard.front_image">
+                                <img src="{{this.partnerDetails.KycDetails.aadharcard.front_image}}" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-6 mt-2" *ngIf="!this.partnerDetails.KycDetails.aadharcard.front_image">
+                                <img src="../../../../../assets/images/notAvailable.jpg" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-6 mt-2">Aadhaarcard Back Image : </div>
+                            <div class="col-sm-6 mt-2" *ngIf="this.partnerDetails.KycDetails.aadharcard.back_image">
+                                <img src="{{this.partnerDetails.KycDetails.aadharcard.back_image}}" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-6 mt-2" *ngIf="!this.partnerDetails.KycDetails.aadharcard.back_image">
+                                <img src="../../../../../assets/images/notAvailable.jpg" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-6 mt-2">Aadhaarcard Number : </div>
+                            <div class="col-sm-6 mt-2">{{this.partnerDetails.KycDetails.aadharcard.AadhaarNumber}}</div>
+                            <div class="col-sm-6 mt-2">Name : </div>
+                            <div class="col-sm-6 mt-2">{{this.partnerDetails.KycDetails.aadharcard.name}}</div>
+                            <div class="col-sm-6 mt-2">Father's Name : </div>
+                            <div class="col-sm-6 mt-2">{{this.partnerDetails.KycDetails.aadharcard.father_name}}</div>
+                            <div class="col-sm-6 mt-2">Date of Birth : </div>
+                            <div class="col-sm-6 mt-2">{{this.partnerDetails.KycDetails.aadharcard.dob}}</div>
+                            <div class="col-sm-6 mt-2">Address : </div>
+                            <div class="col-sm-6 mt-2">{{this.partnerDetails.KycDetails.aadharcard.address}}</div>
+                            <div class="col-sm-6 mt-2">Bank Proof : </div>
+                            <div class="col-sm-6 mt-2" *ngIf="this.partnerDetails.KycDetails.bankProof">
+                                <img src="{{this.partnerDetails.KycDetails.bankProof}}" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-6 mt-2" *ngIf="!this.partnerDetails.KycDetails.bankProof">
+                                <img src="../../../../../assets/images/notAvailable.jpg" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-6 mt-2">Photo : </div>
+                            <div class="col-sm-6 mt-2" *ngIf="this.partnerDetails.KycDetails.photo">
+                                <img src="{{this.partnerDetails.KycDetails.photo}}" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-6 mt-2" *ngIf="!this.partnerDetails.KycDetails.photo">
+                                <img src="../../../../../assets/images/notAvailable.jpg" height="100px" width="100px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Vehicle Details</h4>
+                        <button type="button" class="btn btn-success" *ngIf="this.partnerDetails.BasicDetails.vehicle_details == '1'"> Approve
+                        </button>
+                        <button type="button" class="btn btn-secondary" *ngIf="this.partnerDetails.BasicDetails.vehicle_details == '0'"> Not Submitted
+                        </button>
+                        <button type="button" class="btn btn-danger" *ngIf="this.partnerDetails.BasicDetails.vehicle_details == '3'"> Rejected
+                        </button>
+                    </div>
+                    <div class="card-body" *ngIf="(this.partnerDetails.VehicleDetails.status == '1' || this.partnerDetails.VehicleDetails.status == '2')">
+                        <div class="row">
+                            <div class="col-sm-5">Vehicle Type : </div>
+                            <div class="col-sm-7">{{this.partnerDetails.VehicleDetails.vehicle_type}}</div>
+                            <div class="col-sm-5 mt-2">License Image : </div>
+                            <div class="col-sm-7 mt-2" *ngIf="this.partnerDetails.VehicleDetails.LicenseImage">
+                                <img src="{{this.partnerDetails.VehicleDetails.LicenseImage}}" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-7 mt-2" *ngIf="!this.partnerDetails.VehicleDetails.LicenseImage">
+                                <img src="../../../../../assets/images/notAvailable.jpg" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-5 mt-2">Insurance No. : </div>
+                            <div class="col-sm-7 mt-2">{{this.partnerDetails.VehicleDetails.InsuranceNumber}}</div>
+                            <div class="col-sm-5 mt-2">Insurance Image : </div>
+                            <div class="col-sm-7 mt-2" *ngIf="this.partnerDetails.VehicleDetails.InsuranceImage">
+                                <img src="{{this.partnerDetails.VehicleDetails.InsuranceImage}}" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-7 mt-2" *ngIf="!this.partnerDetails.VehicleDetails.InsuranceImage">
+                                <img src="../../../../../assets/images/notAvailable.jpg" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-5 mt-2">Bank Proof : </div>
+                            <div class="col-sm-7 mt-2" *ngIf="this.partnerDetails.VehicleDetails.bankProof">
+                                <img src="{{this.partnerDetails.VehicleDetails.bankProof}}" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-7 mt-2" *ngIf="!this.partnerDetails.VehicleDetails.bankProof">
+                                <img src="../../../../../assets/images/notAvailable.jpg" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-5 mt-2">Vehicle Name : </div>
+                            <div class="col-sm-7 mt-2">{{this.partnerDetails.VehicleDetails.VehicleName}}</div>
+                            <div class="col-sm-5 mt-2">Vehicle Number : </div>
+                            <div class="col-sm-7 mt-2">{{this.partnerDetails.VehicleDetails.VehicleNumber}}</div>
+                            <div class="col-sm-5 mt-2">License Number : </div>
+                            <div class="col-sm-7 mt-2">{{this.partnerDetails.VehicleDetails.LicenseNumber}}</div>
+                            <div class="col-sm-5 mt-2">Issue Date : </div>
+                            <div class="col-sm-7 mt-2">{{this.partnerDetails.VehicleDetails.IssueDate}}</div>
+                            <div class="col-sm-5 mt-2">Validity Date : </div>
+                            <div class="col-sm-7 mt-2">{{this.partnerDetails.VehicleDetails.ValidityDate}}</div>
+                            <div class="col-sm-5 mt-2">Name On License : </div>
+                            <div class="col-sm-7 mt-2">{{this.partnerDetails.VehicleDetails.nameOnLicense}}</div>
+                            <div class="col-sm-5 mt-2">Relative : </div>
+                            <div class="col-sm-7 mt-2">{{this.partnerDetails.VehicleDetails.relative}}</div>
+                            <div class="col-sm-5 mt-2">Blood Group : </div>
+                            <div class="col-sm-7 mt-2">{{this.partnerDetails.VehicleDetails.bloodGroup}}</div>
+                            <div class="col-sm-5 mt-2">Address : </div>
+                            <div class="col-sm-7 mt-2">{{this.partnerDetails.VehicleDetails.Address}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="verifyAllPartnerDetails(this.partnerDetails.BasicDetails._id)" *ngIf="((this.partnerDetails.BasicDetails.kyc == '1' || this.partnerDetails.BasicDetails.kyc == '2') && (this.partnerDetails.BasicDetails.bank_details == '1' || this.partnerDetails.BasicDetails.bank_details == '2') && (this.partnerDetails.BasicDetails.vehicle_details == '1' || this.partnerDetails.BasicDetails.vehicle_details == '2') && (this.partnerDetails.BasicDetails.term_condition == '1'))"
+            rippleEffect>
+            Approve All
+        </button>
+    </div>
+</ng-template>
+<!-- / Modal -->

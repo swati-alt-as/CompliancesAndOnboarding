@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-
-import { locale as en } from '../../../main/sample/i18n/en'
-import { CoreTranslationService } from '@core/services/translation.service'
-import { LeadsService } from '../../../services/business/leads.service';
-import { ToastrserviceService } from '../../../services/notification/toastrservice.service'
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
+
+import { CoreTranslationService } from '@core/services/translation.service';
+import { locale as en } from '../../../main/sample/i18n/en';
+import { LeadsService } from '../../../services/business/leads.service';
+import { ToastrserviceService } from '../../../services/notification/toastrservice.service';
 
 
 @Component({
@@ -14,13 +14,12 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class LeadsComponent implements OnInit {
 
-  public contentHeader: object
-
+  public contentHeader: object;
 
   message: string;
-  result: any = {};
+  result: any = [];
 
-  leadsList: any = {};
+  leadsList: any = [];
   page = 1;
   count = 0;
   pageSize = 10;
@@ -34,7 +33,7 @@ export class LeadsComponent implements OnInit {
   constructor(private lead: LeadsService, private _coreTranslationService: CoreTranslationService, private spinnerService: NgxSpinnerService) {
     this._coreTranslationService.translate(en)
   }
-
+  dtOptions: DataTables.Settings = {};
 
   ngOnInit(): void {
     this.contentHeader = {
@@ -55,13 +54,18 @@ export class LeadsComponent implements OnInit {
         ]
       }
     }
+    
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
 
     this.spinnerService.show();
     this.lead.getAllLeads().subscribe((result) => {
       this.spinnerService.hide();
       if (!(result["items"].length === 0)) {
         this.leadsList = result["items"];
-        // console.log(this.leadsList)
         this.count = result["items"].length;
       }
     })

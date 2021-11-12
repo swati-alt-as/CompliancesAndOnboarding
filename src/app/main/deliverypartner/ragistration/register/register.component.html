@@ -1,0 +1,622 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+        <!-- <div class="row" *ngIf="!((this.getStatus.BasicDetailsStatus == '1' || this.getStatus.BasicDetailsStatus == '2') && (this.getStatus.KycDetailsStatus == '1' || this.getStatus.KycDetailsStatus == '2') && (this.getStatus.BankDetailsStatus == '1' || this.getStatus.BankDetailsStatus == '2') && (this.getStatus.VehicleDetailsStatus == '1' || this.getStatus.VehicleDetailsStatus == '2') && (this.getStatus.TermConditionStatus == '1' || this.getStatus.TermConditionStatus == '2'))"> -->
+        <!-- Modern Horizontal Wizard -->
+        <section class="modern-horizontal-wizard">
+            <div id="stepper3" class="bs-stepper wizard-modern modern-wizard-example">
+                <div class="bs-stepper-header" *ngIf="!((this.getStatus.BasicDetailsStatus == '1' || this.getStatus.BasicDetailsStatus == '2') && (this.getStatus.KycDetailsStatus == '1' || this.getStatus.KycDetailsStatus == '2') && (this.getStatus.BankDetailsStatus == '1' || this.getStatus.BankDetailsStatus == '2') && (this.getStatus.VehicleDetailsStatus == '1' || this.getStatus.VehicleDetailsStatus == '2') && (this.getStatus.TermConditionStatus == '1' || this.getStatus.TermConditionStatus == '2'))">
+                    <div class="step" data-target="#basic-details" [ngClass]="(this.getStatus.BasicDetailsStatus == '0' || this.getStatus.BasicDetailsStatus == '3') ? 'active' : 'inactive'">
+                        <button type="button" class="step-trigger" [disabled]="(this.getStatus.BasicDetailsStatus == '0' || this.getStatus.BasicDetailsStatus == '3') ? '' : 'true'">
+                            <span class="bs-stepper-box">
+                                <i data-feather="file-text" class="font-medium-3"></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-title">Basic Details</span>
+                                <span class="bs-stepper-subtitle">Setup Basic Details</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="line">
+                        <i data-feather="chevron-right" class="font-medium-2"></i>
+                    </div>
+                    <div class="step" data-target="#kyc-details" [ngClass]="((this.getStatus.KycDetailsStatus == '0' || this.getStatus.KycDetailsStatus == '3') && (this.getStatus.BasicDetailsStatus == '1' || this.getStatus.BasicDetailsStatus == '2')) ? 'active' : 'inactive'">
+                        <button type="button" class="step-trigger" [disabled]="((this.getStatus.KycDetailsStatus == '0' || this.getStatus.KycDetailsStatus == '3') && (this.getStatus.BasicDetailsStatus == '1' || this.getStatus.BasicDetailsStatus == '2')) ? '' : 'true'">
+                            <span class="bs-stepper-box">
+                                <i data-feather="user" class="font-medium-3"></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-title">KYC Details</span>
+                                <span class="bs-stepper-subtitle">Add KYC Details</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="line">
+                        <i data-feather="chevron-right" class="font-medium-2"></i>
+                    </div>
+                    <div class="step" data-target="#bank-details" [ngClass]="((this.getStatus.BankDetailsStatus == '0' || this.getStatus.BankDetailsStatus == '3') && ((this.getStatus.BasicDetailsStatus == '1' || this.getStatus.BasicDetailsStatus == '2') && (this.getStatus.KycDetailsStatus == '1' || this.getStatus.KycDetailsStatus == '2'))) ? 'active' : 'inactive'">
+                        <button type="button" class="step-trigger" [disabled]="((this.getStatus.BankDetailsStatus == '0' || this.getStatus.BankDetailsStatus == '3') && ((this.getStatus.BasicDetailsStatus == '1' || this.getStatus.BasicDetailsStatus == '2') && (this.getStatus.KycDetailsStatus == '1' || this.getStatus.KycDetailsStatus == '2'))) ? '' : 'true'">
+                            <span class="bs-stepper-box">
+                                <i data-feather="map-pin" class="font-medium-3"></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-title">Bank Details</span>
+                                <span class="bs-stepper-subtitle">Add Bank Details</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="line">
+                        <i data-feather="chevron-right" class="font-medium-2"></i>
+                    </div>
+                    <div class="step" data-target="#vehicle-details" [ngClass]="((this.getStatus.VehicleDetailsStatus == '0' || this.getStatus.VehicleDetailsStatus == '3') && ((this.getStatus.BasicDetailsStatus == '1' || this.getStatus.BasicDetailsStatus == '2') && (this.getStatus.KycDetailsStatus == '1' || this.getStatus.KycDetailsStatus == '2') && (this.getStatus.BankDetailsStatus == '1' || this.getStatus.BankDetailsStatus == '2'))) ? 'active' : 'inactive'">
+                        <button type="button" class="step-trigger" [disabled]="((this.getStatus.VehicleDetailsStatus == '0' || this.getStatus.VehicleDetailsStatus == '3') && ((this.getStatus.BasicDetailsStatus == '1' || this.getStatus.BasicDetailsStatus == '2') && (this.getStatus.KycDetailsStatus == '1' || this.getStatus.KycDetailsStatus == '2') && (this.getStatus.BankDetailsStatus == '1' || this.getStatus.BankDetailsStatus == '2'))) ? '' : 'true'">
+                            <span class="bs-stepper-box">
+                                <i data-feather="link" class="font-medium-3"></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-title">Vehicle Details</span>
+                                <span class="bs-stepper-subtitle">Add Vehicle Details</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="line">
+                        <i data-feather="chevron-right" class="font-medium-2"></i>
+                    </div>
+                    <div class="step" data-target="#terms-details" [ngClass]="((this.getStatus.TermConditionStatus == '0' || this.getStatus.TermConditionStatus == '3') && ((this.getStatus.BasicDetailsStatus == '1' || this.getStatus.BasicDetailsStatus == '2') && (this.getStatus.KycDetailsStatus == '1' || this.getStatus.KycDetailsStatus == '2') && (this.getStatus.BankDetailsStatus == '1' || this.getStatus.BankDetailsStatus == '2') && (this.getStatus.VehicleDetailsStatus == '1' || this.getStatus.VehicleDetailsStatus == '2'))) ? 'active' : 'inactive'">
+                        <button type="button" class="step-trigger" [disabled]="((this.getStatus.TermConditionStatus == '0' || this.getStatus.TermConditionStatus == '3') && ((this.getStatus.BasicDetailsStatus == '1' || this.getStatus.BasicDetailsStatus == '2') && (this.getStatus.KycDetailsStatus == '1' || this.getStatus.KycDetailsStatus == '2') && (this.getStatus.BankDetailsStatus == '1' || this.getStatus.BankDetailsStatus == '2') && (this.getStatus.VehicleDetailsStatus == '1' || this.getStatus.VehicleDetailsStatus == '2'))) ? '' : 'true'">
+                            <span class="bs-stepper-box">
+                                <i data-feather="link" class="font-medium-3"></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-title">Terms & Conditions</span>
+                                <span class="bs-stepper-subtitle">Agree Terms & Conditions</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="bs-stepper-content" *ngIf="!((this.getStatus.BasicDetailsStatus == '1' || this.getStatus.BasicDetailsStatus == '2') && (this.getStatus.KycDetailsStatus == '1' || this.getStatus.KycDetailsStatus == '2') && (this.getStatus.BankDetailsStatus == '1' || this.getStatus.BankDetailsStatus == '2') && (this.getStatus.VehicleDetailsStatus == '1' || this.getStatus.VehicleDetailsStatus == '2') && (this.getStatus.TermConditionStatus == '1' || this.getStatus.TermConditionStatus == '2'))">
+                    <div id="basic-details" class="content" [ngClass]="(this.getStatus.BasicDetailsStatus == '0' || this.getStatus.BasicDetailsStatus == '3') ? 'active dstepper-block' : 'inactive dstepper-none'">
+                        <form [formGroup]="basicDetails" (ngSubmit)="addbasicDetails()">
+                            <div class="content-header">
+                                <h5 class="mb-0">Basic Details</h5>
+                                <small class="text-muted">Enter Your Basic Details.</small>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="modern-name"> Name</label>
+                                    <input type="text" id="modern-name" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': basic_step && basic.name.errors }" placeholder="Name" />
+                                    <div *ngIf="basic.name.touched && basic.name.invalid" class="text-danger mt-2">
+                                        <div *ngIf="basic.name.errors && basic.name.errors.required">
+                                            Name is required.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="modern-phone"> Phone Number </label>
+                                    <input type="text" readonly id="modern-phone" class="form-control" formControlName="phone" [(ngModel)]="this.phonenumber" [ngClass]="{ 'is-invalid': basic_step && basic.phone.errors }" placeholder="Phone Number " />
+                                    <div *ngIf="basic.phone.touched && basic.phone.invalid" class="text-danger mt-2">
+                                        <div *ngIf="basic.phone.errors && basic.phone.errors.required">
+                                            Phone Number is required.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="modern-country">Country</label>
+                                    <select class="form-control" (change)="countryChangeHandler($event)" formControlName="country" id="country" name="country">
+                                        <option value="" selected hidden>Please Select Country</option>
+                                        <option *ngFor="let country of this.countries"
+                                            [value]="country.id+'+++'+country.name">
+                                            {{country.name}}</option>
+                                    </select>
+                                    <div *ngIf="basic.country.touched && basic.country.invalid" class="text-danger mt-2">
+                                        <div *ngIf="basic.country.errors && basic.country.errors.required">Country is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="modern-state">State</label>
+                                    <select class="form-control" (change)="stateChangeHandler($event)" formControlName="state" id="state" name="state">
+                                        <option value="" selected hidden>Please Select State</option>
+                                        <option *ngFor="let state of this.states" [value]="state.id+'+++'+state.name">
+                                            {{state.name}}</option>
+                                    </select>
+                                    <div *ngIf="basic.state.touched && basic.state.invalid" class="text-danger mt-2">
+                                        <div *ngIf="basic.state.errors && basic.state.errors.required">State is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="modern-city">City</label>
+                                    <select class="form-control" formControlName="city" id="city" name="city">
+                                        <option value="" selected hidden>Please Select City</option>
+                                        <option *ngFor="let city of this.cityList" [value]="city.id+'+++'+city.name">
+                                            {{city.name}}</option>
+                                    </select>
+                                    <div *ngIf="basic.city.touched && basic.city.invalid" class="text-danger mt-2">
+                                        <div *ngIf="basic.city.errors && basic.city.errors.required">City is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="modern-address"> Address</label>
+                                    <input type="text" id="modern-address" class="form-control" formControlName="address" [ngClass]="{ 'is-invalid': basic_step && basic.address.errors }" placeholder="Address" />
+                                    <div *ngIf="basic.address.touched && basic.address.invalid" class="text-danger mt-2">
+                                        <div *ngIf="basic.address.errors && basic.address.errors.required">
+                                            Address is required.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="modern-dob"> Date Of Birth</label>
+                                    <input type="date" id="modern-dob" class="form-control" formControlName="dob" [ngClass]="{ 'is-invalid': basic_step && basic.dob.errors }" placeholder="Date Of Birth" />
+                                    <div *ngIf="basic.dob.touched && basic.dob.invalid" class="text-danger mt-2">
+                                        <div *ngIf="basic.dob.errors && basic.dob.errors.required">
+                                            Date Of Birth is required.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="modern-blood_group">Blood Group</label>
+                                    <select class="form-control" formControlName="blood_group" id="blood_group" name="blood_group">
+                                        <option value="" selected hidden>Please Select Blood Group</option>
+                                        <option *ngFor="let bloodgroup of bloodgroupList"
+                                            [value]="bloodgroup._id+'+++'+bloodgroup.name">
+                                            {{bloodgroup.name}}</option>
+                                    </select>
+                                    <div *ngIf="basic.blood_group.touched && basic.blood_group.invalid" class="text-danger mt-2">
+                                        <div *ngIf="basic.blood_group.errors && basic.blood_group.errors.required">Blood Group is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="modern-gender">Gender</label>
+                                    <select class="form-control" formControlName="gender" id="modern-gender" name="gender">
+                                        <option value="" selected hidden>Please Select Gender</option>
+                                        <option [value]="1+'+++'+'Male'">Male</option>
+                                        <option [value]="2+'+++'+'Female'">Female</option>
+                                    </select>
+                                    <div *ngIf="basic.gender.touched && basic.gender.invalid" class="text-danger mt-2">
+                                        <div *ngIf="basic.gender.errors && basic.gender.errors.required">
+                                            Gender is required.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-primary btn-next" [disabled]="!basicDetails.valid"><span
+                                        class="align-middle d-sm-inline-block d-none">Next</span>
+                                    <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="kyc-details" class="content" [ngClass]="((this.getStatus.KycDetailsStatus == '0' || this.getStatus.KycDetailsStatus == '3') && (this.getStatus.BasicDetailsStatus == '1' || this.getStatus.BasicDetailsStatus == '2')) ? 'active dstepper-block' : 'inactive dstepper-none'">
+                        <form [formGroup]="kycDetails" (ngSubmit)="addkycDetails()">
+                            <div class="content-header">
+                                <h5 class="mb-0">KYC Details</h5>
+                                <small>Enter Your KYC Details.</small>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="modern-pancard">Pancard Image</label>
+                                    <input type="file" formControlName="pancard" id="modern-pancard" class="form-control" (change)="onPancardFileChange($event)" [ngClass]="{ 'is-invalid': kyc_step && kyc.pancard.errors }" />
+                                    <div *ngIf="kyc.pancard.touched && kyc.pancard.invalid" class="text-danger mt-2">
+                                        <div *ngIf="kyc.pancard.errors && kyc.pancard.errors.required">
+                                            Pancard is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="modern-bankProof">Bank Proof i.e. Passbook/Cheque
+                                        Image</label>
+                                    <input type="file" formControlName="bankProof" id="modern-bankProof" class="form-control" (change)="onBankFileChange($event)" [ngClass]="{ 'is-invalid': kyc_step && kyc.bankProof.errors }" />
+                                    <div *ngIf="kyc.bankProof.touched && kyc.bankProof.invalid" class="text-danger mt-2">
+                                        <div *ngIf="kyc.bankProof.errors && kyc.bankProof.errors.required">
+                                            Bank Proof is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="modern-aadharcardfront">Aadhaarcard Front
+                                        Image</label>
+                                    <input type="file" formControlName="aadharcardfront" id="modern-aadharcardfront" class="form-control" (change)="onAdharFrontFileChange($event)" [ngClass]="{ 'is-invalid': kyc_step && kyc.aadharcardfront.errors }" />
+                                    <div *ngIf="kyc.aadharcardfront.touched && kyc.aadharcardfront.invalid" class="text-danger mt-2">
+                                        <div *ngIf="kyc.aadharcardfront.errors && kyc.aadharcardfront.errors.required">
+                                            Aadhaarcard Front is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="modern-aadharcardback">Aadhaarcard Back Image</label>
+                                    <input type="file" formControlName="aadharcardback" id="modern-aadharcardback" class="form-control" (change)="onAdharBackFileChange($event)" [ngClass]="{ 'is-invalid': kyc_step && kyc.aadharcardback.errors }" />
+                                    <div *ngIf="kyc.aadharcardback.touched && kyc.aadharcardback.invalid" class="text-danger mt-2">
+                                        <div *ngIf="kyc.aadharcardback.errors && kyc.aadharcardback.errors.required">
+                                            Aadhaarcard Back is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="modern-photo">Your Image</label>
+                                    <input type="file" formControlName="photo" id="modern-photo" class="form-control" (change)="onPhotoFileChange($event)" [ngClass]="{ 'is-invalid': kyc_step && kyc.photo.errors }" />
+                                    <div *ngIf="kyc.photo.touched && kyc.photo.invalid" class="text-danger mt-2">
+                                        <div *ngIf="kyc.photo.errors && kyc.photo.errors.required">
+                                            Your Image is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-primary btn-next" [disabled]="!kycDetails.valid"><span
+                                        class="align-middle d-sm-inline-block d-none">Next</span>
+                                    <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="bank-details" class="content" [ngClass]="((this.getStatus.BankDetailsStatus == '0' || this.getStatus.BankDetailsStatus == '3') && ((this.getStatus.BasicDetailsStatus == '1' || this.getStatus.BasicDetailsStatus == '2') && (this.getStatus.KycDetailsStatus == '1' || this.getStatus.KycDetailsStatus == '2'))) ? 'active dstepper-block' : 'inactive dstepper-none'">
+                        <form [formGroup]="bankDetails" (ngSubmit)="addbankDetails()">
+                            <div class="content-header">
+                                <h5 class="mb-0">Bank Details</h5>
+                                <small>Enter Your Bank Details.</small>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="modern-accountNumber">Account Number</label>
+                                    <input type="text" id="modern-accountNumber" class="form-control" formControlName="accountNumber" [ngClass]="{ 'is-invalid': bank_step && bank.accountNumber.errors }" placeholder="Account Number" />
+                                    <div *ngIf="bank.accountNumber.touched && bank.accountNumber.invalid" class="text-danger mt-2">
+                                        <div *ngIf="bank.accountNumber.errors && bank.accountNumber.errors.required">
+                                            Account Number is required.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="modern-IFSCcode">IFSC code</label>
+                                    <input type="text" id="modern-IFSCcode" class="form-control" formControlName="IFSCcode" (keyup)="fetchBankName($event)" (change)="fetchBankName($event)" [ngClass]="{ 'is-invalid': bank_step && bank.IFSCcode.errors }" placeholder="IFSC code" />
+                                    <div *ngIf="bank.IFSCcode.touched && bank.IFSCcode.invalid" class="text-danger mt-2">
+                                        <div *ngIf="bank.IFSCcode.errors && bank.IFSCcode.errors.required">
+                                            IFSC code is required.</div>
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group col-md-6" *ngIf="this.bankname">
+                            <label class="form-label" for="modern-branch_name">Branch Name</label>
+                            <input type="text" readonly id="modern-branch_name" class="form-control" formControlName="branch_name" [(ngModel)]="this.bankname.branch" [ngClass]="{ 'is-invalid': bank_step && bank.branch_name.errors }" placeholder="Branch Name" />
+                            <div *ngIf="bank.branch_name.touched && bank.branch_name.invalid" class="text-danger mt-2">
+                                <div *ngIf="bank.branch_name.errors && bank.branch_name.errors.required">
+                                    Branch Name is required.</div>
+                            </div>
+                        </div> -->
+                                <div class="form-group col-md-6" *ngIf="this.bankname">
+                                    <label class="form-label" for="modern-bankName">Bank Name</label>
+                                    <input type="text" readonly id="modern-bankName" class="form-control" formControlName="bankName" [(ngModel)]="this.bankname.bank_name" [ngClass]="{ 'is-invalid': bank_step && bank.bankName.errors }" placeholder="Bank Name" />
+                                    <div *ngIf="bank.bankName.touched && bank.bankName.invalid" class="text-danger mt-2">
+                                        <div *ngIf="bank.bankName.errors && bank.bankName.errors.required">
+                                            Bank Name is required.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="modern-bankBeneficiaryName">Beneficiary Name</label>
+                                    <input type="text" id="modern-bankBeneficiaryName" class="form-control" formControlName="bankBeneficiaryName" [ngClass]="{ 'is-invalid': bank_step && bank.bankBeneficiaryName.errors }" placeholder="Beneficiary Name" />
+                                    <div *ngIf="bank.bankBeneficiaryName.touched && bank.bankBeneficiaryName.invalid" class="text-danger mt-2">
+                                        <div *ngIf="bank.bankBeneficiaryName.errors && bank.bankBeneficiaryName.errors.required">
+                                            Beneficiary Name is required.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="modern-bankContactId">Bank Contact Details</label>
+                                    <input type="text" id="modern-bankContactId" class="form-control" formControlName="bankContactId" [ngClass]="{ 'is-invalid': bank_step && bank.bankContactId.errors }" placeholder="Bank Contact Details" />
+                                    <div *ngIf="bank.bankContactId.touched && bank.bankContactId.invalid" class="text-danger mt-2">
+                                        <div *ngIf="bank.bankContactId.errors && bank.bankContactId.errors.required">
+                                            Bank Contact Details is required.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-primary btn-next" [disabled]="!bankDetails.valid"><span
+                                        class="align-middle d-sm-inline-block d-none">Next</span>
+                                    <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="vehicle-details" class="content" [ngClass]="((this.getStatus.VehicleDetailsStatus == '0' || this.getStatus.VehicleDetailsStatus == '3') && ((this.getStatus.BasicDetailsStatus == '1' || this.getStatus.BasicDetailsStatus == '2') && (this.getStatus.KycDetailsStatus == '1' || this.getStatus.KycDetailsStatus == '2') && (this.getStatus.BankDetailsStatus == '1' || this.getStatus.BankDetailsStatus == '2'))) ? 'active dstepper-block' : 'inactive dstepper-none'">
+                        <form [formGroup]="vehicleDetails" (ngSubmit)="addvehicleDetails()">
+                            <div class="content-header">
+                                <h5 class="mb-0">Vehicle Details</h5>
+                                <small>Enter Your Vehicle Details.</small>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="modern-vehicle_type">Vehicle Type</label>
+                                    <select class="form-control" (change)="haveVehicle($event)" formControlName="vehicle_type" id="modern-vehicle_type" name="vehicle_type">
+                                        <option value="" selected hidden>Please Select Vehicle Type</option>
+                                        <option [value]="'None'">None</option>
+                                        <option [value]="'Bicycle'">Bicycle</option>
+                                        <option [value]="'Motorcycle'">Motorcycle</option>
+                                        <option [value]="'Scooter'">Scooter</option>
+                                    </select>
+                                    <div *ngIf="vehicle.vehicle_type.touched && vehicle.vehicle_type.invalid" class="text-danger mt-2">
+                                        <div *ngIf="vehicle.vehicle_type.errors && vehicle.vehicle_type.errors.required">
+                                            Vehicle Type is required.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6" *ngIf="!(vehicleDetails.value.vehicle_type == 'None')">
+                                    <label class="form-label" for="modern-VehicleName">Vehicle Name</label>
+                                    <input type="text" id="modern-VehicleName" class="form-control" formControlName="VehicleName" [ngClass]="{ 'is-invalid': vehicle_step && vehicle.VehicleName.errors }" placeholder="Vehicle Name" />
+                                    <div *ngIf="vehicle.VehicleName.touched && vehicle.VehicleName.invalid" class="text-danger mt-2">
+                                        <div *ngIf="vehicle.VehicleName.errors && vehicle.VehicleName.errors.required">
+                                            Vehicle Name is required.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6" *ngIf="!(vehicleDetails.value.vehicle_type == 'None')">
+                                    <label class="form-label" for="modern-VehicleNumber">Vehicle Number</label>
+                                    <input type="text" id="modern-VehicleNumber" class="form-control" formControlName="VehicleNumber" [ngClass]="{ 'is-invalid': vehicle_step && vehicle.VehicleNumber.errors }" placeholder="Vehicle Number" />
+                                    <div *ngIf="vehicle.VehicleNumber.touched && vehicle.VehicleNumber.invalid" class="text-danger mt-2">
+                                        <div *ngIf="vehicle.VehicleNumber.errors && vehicle.VehicleNumber.errors.required">
+                                            Vehicle Number is required.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6" *ngIf="!(vehicleDetails.value.vehicle_type == 'None')">
+                                    <label class="form-label" for="modern-InsuranceNumber">Insurance Number</label>
+                                    <input type="text" id="modern-InsuranceNumber" class="form-control" formControlName="InsuranceNumber" [ngClass]="{ 'is-invalid': vehicle_step && vehicle.InsuranceNumber.errors }" placeholder="Insurance Number" />
+                                    <div *ngIf="vehicle.InsuranceNumber.touched && vehicle.InsuranceNumber.invalid" class="text-danger mt-2">
+                                        <div *ngIf="vehicle.InsuranceNumber.errors && vehicle.InsuranceNumber.errors.required">
+                                            Insurance Number is required.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6" *ngIf="!(vehicleDetails.value.vehicle_type == 'None')">
+                                    <label class="form-label" for="modern-InsuranceImage">Insurance Image</label>
+                                    <input type="file" formControlName="InsuranceImage" id="modern-InsuranceImage" class="form-control" (change)="onInsuranceFileChange($event)" [ngClass]="{ 'is-invalid': vehicle_step && vehicle.InsuranceImage.errors }" />
+                                    <div *ngIf="vehicle.InsuranceImage.touched && vehicle.InsuranceImage.invalid" class="text-danger mt-2">
+                                        <div *ngIf="vehicle.InsuranceImage.errors && vehicle.InsuranceImage.errors.required">
+                                            Insurance Image is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6" *ngIf="!(vehicleDetails.value.vehicle_type == 'None')">
+                                    <label class="form-label" for="modern-LicenseImage">License Image</label>
+                                    <input type="file" formControlName="LicenseImage" id="modern-LicenseImage" class="form-control" (change)="onLicenseFileChange($event)" [ngClass]="{ 'is-invalid': vehicle_step && vehicle.LicenseImage.errors }" />
+                                    <div *ngIf="vehicle.LicenseImage.touched && vehicle.LicenseImage.invalid" class="text-danger mt-2">
+                                        <div *ngIf="vehicle.LicenseImage.errors && vehicle.LicenseImage.errors.required">
+                                            License Image is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-primary btn-next" [disabled]="!vehicleDetails.valid"><span
+                                        class="align-middle d-sm-inline-block d-none">Next</span>
+                                    <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="terms-details" class="content" [ngClass]="((this.getStatus.TermConditionStatus == '0' || this.getStatus.TermConditionStatus == '3') && ((this.getStatus.BasicDetailsStatus == '1' || this.getStatus.BasicDetailsStatus == '2') && (this.getStatus.KycDetailsStatus == '1' || this.getStatus.KycDetailsStatus == '2') && (this.getStatus.BankDetailsStatus == '1' || this.getStatus.BankDetailsStatus == '2') && (this.getStatus.VehicleDetailsStatus == '1' || this.getStatus.VehicleDetailsStatus == '2'))) ? 'active dstepper-block' : 'inactive dstepper-none'">
+                        <form [formGroup]="termsDetails" (ngSubmit)="addtermsDetails()">
+                            <div class="content-header">
+                                <h5 class="mb-0">Terms & Conditions</h5>
+                                <small>Check Our Terms & Conditions.</small>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <input type="checkbox" name="terms" formControlName="terms">
+                                    <label class="form-label" for="modern-terms"> By checking this you agree to our
+                                        terms and
+                                        conditions and privacy policy.
+                                    </label>
+                                    <div *ngIf="terms.terms.touched && terms.terms.invalid" class="text-danger mt-2">
+                                        <div *ngIf="terms.terms.errors && terms.terms.errors.required">
+                                            Please check to agree.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="checkbox" name="alert" formControlName="alert">
+                                    <label class="form-label" for="modern-alert"> By checking this you agree that we can
+                                        sent
+                                        alert through whatsapp to your number.
+                                    </label>
+                                    <div *ngIf="terms.alert.touched && terms.alert.invalid" class="text-danger mt-2">
+                                        <div *ngIf="terms.alert.errors && terms.alert.errors.required">
+                                            Please check to agree.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-primary btn-next" [disabled]="!termsDetails.valid"><span
+                                        class="align-middle d-sm-inline-block d-none">Next</span>
+                                    <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /Modern Horizontal Wizard -->
+        <!-- </div> -->
+        <div class="row" *ngIf="((this.getStatus.BasicDetailsStatus == '1' || this.getStatus.BasicDetailsStatus == '2') && (this.getStatus.KycDetailsStatus == '1' || this.getStatus.KycDetailsStatus == '2') && (this.getStatus.BankDetailsStatus == '1' || this.getStatus.BankDetailsStatus == '2') && (this.getStatus.VehicleDetailsStatus == '1' || this.getStatus.VehicleDetailsStatus == '2') && (this.getStatus.TermConditionStatus == '1' || this.getStatus.TermConditionStatus == '2'))">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Basic Details</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">Name : </div>
+                            <div class="col-sm-6">{{this.basicDetail.name}}</div>
+                            <div class="col-sm-6 mt-2">Address : </div>
+                            <div class="col-sm-6 mt-2">{{this.basicDetail.address}}</div>
+                            <div class="col-sm-6 mt-2">Gender : </div>
+                            <div class="col-sm-6 mt-2">{{this.basicDetail.gender}}</div>
+                            <div class="col-sm-6 mt-2">Date of Birth : </div>
+                            <div class="col-sm-6 mt-2">{{this.basicDetail.dob}}</div>
+                            <div class="col-sm-6 mt-2">Contact No. : </div>
+                            <div class="col-sm-6 mt-2">{{this.basicDetail.phone}}</div>
+                            <div class="col-sm-6 mt-2">Blood Group : </div>
+                            <div class="col-sm-6 mt-2">{{this.basicDetail.blood_group}}</div>
+                            <div class="col-sm-6 mt-2">Term & Condition : </div>
+                            <div class="col-sm-6 mt-2" *ngIf="this.basicDetail.term_condition == 1">Yes</div>
+                            <div class="col-sm-6 mt-2" *ngIf="this.basicDetail.term_condition == 0">No</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Bank Details</h4>
+                        <button type="button" class="btn btn-success" *ngIf="this.basicDetail.bank_details == '1'">
+                            Approve
+                        </button>
+                        <button type="button" class="btn btn-secondary" *ngIf="this.basicDetail.bank_details == '0'">
+                            Not Submitted
+                        </button>
+                        <button type="button" class="btn btn-danger" *ngIf="this.basicDetail.bank_details == '3'">
+                            Rejected
+                        </button>
+                    </div>
+                    <div class="card-body" *ngIf="(this.bankDetail.status == '1' || this.bankDetail.status == '2')">
+                        <div class="row">
+                            <div class="col-sm-6">Bank Beneficiary Name :</div>
+                            <div class="col-sm-6">{{this.bankDetail.bankBeneficiaryName}}</div>
+                            <div class="col-sm-6 mt-2">Bank Name : </div>
+                            <div class="col-sm-6 mt-2">{{this.bankDetail.bankName}}</div>
+                            <div class="col-sm-6 mt-2">IFSC Code : </div>
+                            <div class="col-sm-6 mt-2">{{this.bankDetail.IFSCcode}}</div>
+                            <div class="col-sm-6 mt-2">Account Number : </div>
+                            <div class="col-sm-6 mt-2">{{this.bankDetail.accountNumber}}</div>
+                            <div class="col-sm-6 mt-2">Bank Contact Id : </div>
+                            <div class="col-sm-6 mt-2">{{this.bankDetail.bankContactId}}</div>
+                            <div class="col-sm-6 mt-2">Bank Beneficiary Id : </div>
+                            <div class="col-sm-6 mt-2">{{this.bankDetail.bankBeneficiaryId}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Kyc Details</h4>
+                        <button type="button" class="btn btn-success" *ngIf="this.basicDetail.kyc == '1'"> Approve
+                        </button>
+                        <button type="button" class="btn btn-secondary" *ngIf="this.basicDetail.kyc == '0'"> Not
+                            Submitted
+                        </button>
+                        <button type="button" class="btn btn-danger" *ngIf="this.basicDetail.kyc == '3'"> Rejected
+                        </button>
+                    </div>
+                    <div class="card-body" *ngIf="(this.kycDetail.status == '1' || this.kycDetail.status == '2')">
+                        <div class="row">
+                            <div class="col-sm-6">Pancard Image : </div>
+                            <div class="col-sm-6" *ngIf="this.kycDetail.pancard.image">
+                                <img src="{{this.kycDetail.pancard.image}}" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-6" *ngIf="!this.kycDetail.pancard.image">
+                                <img src="../../../../../assets/images/notAvailable.jpg" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-6 mt-2">Pan Number : </div>
+                            <div class="col-sm-6 mt-2">{{this.kycDetail.pancard.PanNumber}}</div>
+                            <div class="col-sm-6 mt-2">Name : </div>
+                            <div class="col-sm-6 mt-2">{{this.kycDetail.pancard.name}}</div>
+                            <div class="col-sm-6 mt-2">Father's Name : </div>
+                            <div class="col-sm-6 mt-2">{{this.kycDetail.pancard.father_name}}</div>
+                            <div class="col-sm-6 mt-2">Date of Birth : </div>
+                            <div class="col-sm-6 mt-2">{{this.kycDetail.pancard.dob}}</div>
+                            <hr>
+                            <div class="col-sm-6 mt-2">Aadhaarcard Front Image : </div>
+                            <div class="col-sm-6 mt-2" *ngIf="this.kycDetail.aadharcard.front_image">
+                                <img src="{{this.kycDetail.aadharcard.front_image}}" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-6 mt-2" *ngIf="!this.kycDetail.aadharcard.front_image">
+                                <img src="../../../../../assets/images/notAvailable.jpg" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-6 mt-2">Aadhaarcard Back Image : </div>
+                            <div class="col-sm-6 mt-2" *ngIf="this.kycDetail.aadharcard.back_image">
+                                <img src="{{this.kycDetail.aadharcard.back_image}}" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-6 mt-2" *ngIf="!this.kycDetail.aadharcard.back_image">
+                                <img src="../../../../../assets/images/notAvailable.jpg" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-6 mt-2">Aadhaarcard Number : </div>
+                            <div class="col-sm-6 mt-2">{{this.kycDetail.aadharcard.AadhaarNumber}}</div>
+                            <div class="col-sm-6 mt-2">Name : </div>
+                            <div class="col-sm-6 mt-2">{{this.kycDetail.aadharcard.name}}</div>
+                            <div class="col-sm-6 mt-2">Father's Name : </div>
+                            <div class="col-sm-6 mt-2">{{this.kycDetail.aadharcard.father_name}}</div>
+                            <div class="col-sm-6 mt-2">Date of Birth : </div>
+                            <div class="col-sm-6 mt-2">{{this.kycDetail.aadharcard.dob}}</div>
+                            <div class="col-sm-6 mt-2">Address : </div>
+                            <div class="col-sm-6 mt-2">{{this.kycDetail.aadharcard.address}}</div>
+                            <div class="col-sm-6 mt-2">Bank Proof : </div>
+                            <div class="col-sm-6 mt-2" *ngIf="this.kycDetail.bankProof">
+                                <img src="{{this.kycDetail.bankProof}}" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-6 mt-2" *ngIf="!this.kycDetail.bankProof">
+                                <img src="../../../../../assets/images/notAvailable.jpg" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-6 mt-2">Photo : </div>
+                            <div class="col-sm-6 mt-2" *ngIf="this.kycDetail.photo">
+                                <img src="{{this.kycDetail.photo}}" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-6 mt-2" *ngIf="!this.kycDetail.photo">
+                                <img src="../../../../../assets/images/notAvailable.jpg" height="100px" width="100px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Vehicle Details</h4>
+                        <button type="button" class="btn btn-success" *ngIf="this.basicDetail.vehicle_details == '1'">
+                            Approve
+                        </button>
+                        <button type="button" class="btn btn-secondary" *ngIf="this.basicDetail.vehicle_details == '0'">
+                            Not Submitted
+                        </button>
+                        <button type="button" class="btn btn-danger" *ngIf="this.basicDetail.vehicle_details == '3'">
+                            Rejected
+                        </button>
+                    </div>
+                    <div class="card-body" *ngIf="(this.vehicleDetail.status == '1' || this.vehicleDetail.status == '2')">
+                        <div class="row">
+                            <div class="col-sm-5">Vehicle Type : </div>
+                            <div class="col-sm-7">{{this.vehicleDetail.vehicle_type}}</div>
+                            <div class="col-sm-5 mt-2">License Image : </div>
+                            <div class="col-sm-7 mt-2" *ngIf="this.vehicleDetail.LicenseImage">
+                                <img src="{{this.vehicleDetail.LicenseImage}}" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-7 mt-2" *ngIf="!this.vehicleDetail.LicenseImage">
+                                <img src="../../../../../assets/images/notAvailable.jpg" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-5 mt-2">Insurance No. : </div>
+                            <div class="col-sm-7 mt-2">{{this.vehicleDetail.InsuranceNumber}}</div>
+                            <div class="col-sm-5 mt-2">Insurance Image : </div>
+                            <div class="col-sm-7 mt-2" *ngIf="this.vehicleDetail.InsuranceImage">
+                                <img src="{{this.vehicleDetail.InsuranceImage}}" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-7 mt-2" *ngIf="!this.vehicleDetail.InsuranceImage">
+                                <img src="../../../../../assets/images/notAvailable.jpg" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-5 mt-2">Bank Proof : </div>
+                            <div class="col-sm-7 mt-2" *ngIf="this.vehicleDetail.bankProof">
+                                <img src="{{this.vehicleDetail.bankProof}}" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-7 mt-2" *ngIf="!this.vehicleDetail.bankProof">
+                                <img src="../../../../../assets/images/notAvailable.jpg" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-5 mt-2">Vehicle Name : </div>
+                            <div class="col-sm-7 mt-2">{{this.vehicleDetail.VehicleName}}</div>
+                            <div class="col-sm-5 mt-2">Vehicle Number : </div>
+                            <div class="col-sm-7 mt-2">{{this.vehicleDetail.VehicleNumber}}</div>
+                            <div class="col-sm-5 mt-2">License Number : </div>
+                            <div class="col-sm-7 mt-2">{{this.vehicleDetail.LicenseNumber}}</div>
+                            <div class="col-sm-5 mt-2">Issue Date : </div>
+                            <div class="col-sm-7 mt-2">{{this.vehicleDetail.IssueDate}}</div>
+                            <div class="col-sm-5 mt-2">Validity Date : </div>
+                            <div class="col-sm-7 mt-2">{{this.vehicleDetail.ValidityDate}}</div>
+                            <div class="col-sm-5 mt-2">Name On License : </div>
+                            <div class="col-sm-7 mt-2">{{this.vehicleDetail.nameOnLicense}}</div>
+                            <div class="col-sm-5 mt-2">Relative : </div>
+                            <div class="col-sm-7 mt-2">{{this.vehicleDetail.relative}}</div>
+                            <div class="col-sm-5 mt-2">Blood Group : </div>
+                            <div class="col-sm-7 mt-2">{{this.vehicleDetail.bloodGroup}}</div>
+                            <div class="col-sm-5 mt-2">Address : </div>
+                            <div class="col-sm-7 mt-2">{{this.vehicleDetail.Address}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

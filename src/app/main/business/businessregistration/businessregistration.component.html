@@ -1,0 +1,707 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+        <!-- Modern Horizontal Wizard -->
+        <section class="modern-horizontal-wizard">
+            <div id="stepper3" class="bs-stepper wizard-modern modern-wizard-example">
+                <div class="bs-stepper-header">
+                    <div class="step" data-target="#basic-details-modern" [ngClass]="(this.getStatus.BasicDetails == '0' || this.getStatus.BasicDetails == '3') ? 'active' : 'inactive'">
+                        <button type="button" class="step-trigger" [disabled]="(this.getStatus.BasicDetails == '0' || this.getStatus.BasicDetails == '3') ? '' : 'true'">
+                            <span class="bs-stepper-box">
+                                <i data-feather="file-text" class="font-medium-3"></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-title">Basic</span>
+                                <span class="bs-stepper-subtitle">Basic</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="line">
+                        <i data-feather="chevron-right" class="font-medium-2"></i>
+                    </div>
+                    <div class="step" data-target="#contact-info-modern" [ngClass]="((this.getStatus.ContactDetails == '0' || this.getStatus.ContactDetails == '3') && (this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2')) ? 'active' : 'inactive'">
+                        <button type="button" class="step-trigger" [disabled]="((this.getStatus.ContactDetails == '0' || this.getStatus.ContactDetails == '3') && (this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2')) ? '' : 'true'">
+                            <span class="bs-stepper-box">
+                                <i data-feather="user" class="font-medium-3"></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-title">Contact</span>
+                                <span class="bs-stepper-subtitle">Contact</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="line">
+                        <i data-feather="chevron-right" class="font-medium-2"></i>
+                    </div>
+                    <div class="step" data-target="#bank-details-modern" [ngClass]="((this.getStatus.BankDetails == '0' || this.getStatus.BankDetails == '3') && ((this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2') && (this.getStatus.ContactDetails == '1' || this.getStatus.ContactDetails == '2'))) ? 'active' : 'inactive'">
+                        <button type="button" class="step-trigger" [disabled]="((this.getStatus.BankDetails == '0' || this.getStatus.BankDetails == '3') && ((this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2') && (this.getStatus.ContactDetails == '1' || this.getStatus.ContactDetails == '2'))) ? '' : 'true'">
+                            <span class="bs-stepper-box">
+                                <i data-feather="home" class="font-medium-3"></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-title">Bank</span>
+                                <span class="bs-stepper-subtitle">Bank</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="line">
+                        <i data-feather="chevron-right" class="font-medium-2"></i>
+                    </div>
+                    <div class="step" data-target="#tax-details-modern" [ngClass]="((this.getStatus.TaxDetails == '0' || this.getStatus.TaxDetails == '3') && ((this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2') && (this.getStatus.ContactDetails == '1' || this.getStatus.ContactDetails == '2') && (this.getStatus.BankDetails == '1' || this.getStatus.BankDetails == '2'))) ? 'active' : 'inactive'">
+                        <button type="button" class="step-trigger" [disabled]="((this.getStatus.TaxDetails == '0' || this.getStatus.TaxDetails == '3') && ((this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2') && (this.getStatus.ContactDetails == '1' || this.getStatus.ContactDetails == '2') && (this.getStatus.BankDetails == '1' || this.getStatus.BankDetails == '2'))) ? '' : 'true'">
+                            <span class="bs-stepper-box">
+                                <i data-feather="briefcase" class="font-medium-3"></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-title">Tax</span>
+                                <span class="bs-stepper-subtitle">Tax</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="line">
+                        <i data-feather="chevron-right" class="font-medium-2"></i>
+                    </div>
+                    <div class="step" data-target="#fssai-details-modern" [ngClass]="((this.getStatus.FssaiDetails == '0' || this.getStatus.FssaiDetails == '3') && ((this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2') && (this.getStatus.ContactDetails == '1' || this.getStatus.ContactDetails == '2') && (this.getStatus.BankDetails == '1' || this.getStatus.BankDetails == '2') && (this.getStatus.TaxDetails == '1' || this.getStatus.TaxDetails == '2'))) ? 'active' : 'inactive'">
+                        <button type="button" class="step-trigger" [disabled]="((this.getStatus.FssaiDetails == '0' || this.getStatus.FssaiDetails == '3') && ((this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2') && (this.getStatus.ContactDetails == '1' || this.getStatus.ContactDetails == '2') && (this.getStatus.BankDetails == '1' || this.getStatus.BankDetails == '2') && (this.getStatus.TaxDetails == '1' || this.getStatus.TaxDetails == '2'))) ? '' : 'true'">
+                            <span class="bs-stepper-box">
+                                <i data-feather="link" class="font-medium-3"></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-title">FSSAI</span>
+                                <span class="bs-stepper-subtitle">FSSAI</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="line">
+                        <i data-feather="chevron-right" class="font-medium-2"></i>
+                    </div>
+                    <div class="step" data-target="#kyc-details-modern" [ngClass]="((this.getStatus.KycDetails == '0' || this.getStatus.KycDetails == '3') && ((this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2') && (this.getStatus.ContactDetails == '1' || this.getStatus.ContactDetails == '2') && (this.getStatus.BankDetails == '1' || this.getStatus.BankDetails == '2') && (this.getStatus.TaxDetails == '1' || this.getStatus.TaxDetails == '2') && (this.getStatus.FssaiDetails == '1' || this.getStatus.FssaiDetails == '2'))) ? 'active' : 'inactive'">
+                        <button type="button" class="step-trigger" [disabled]="((this.getStatus.KycDetails == '0' || this.getStatus.KycDetails == '3') && ((this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2') && (this.getStatus.ContactDetails == '1' || this.getStatus.ContactDetails == '2') && (this.getStatus.BankDetails == '1' || this.getStatus.BankDetails == '2') && (this.getStatus.TaxDetails == '1' || this.getStatus.TaxDetails == '2') && (this.getStatus.FssaiDetails == '1' || this.getStatus.FssaiDetails == '2'))) ? '' : 'true'">
+                            <span class="bs-stepper-box">
+                                <i data-feather="lock" class="font-medium-3"></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-title">Kyc</span>
+                                <span class="bs-stepper-subtitle">Kyc</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="line">
+                        <i data-feather="chevron-right" class="font-medium-2"></i>
+                    </div>
+                    <div class="step" data-target="#commission-details-modern" [ngClass]="((this.getStatus.CommissionDetails == '0' || this.getStatus.CommissionDetails == '3') && ((this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2') && (this.getStatus.ContactDetails == '1' || this.getStatus.ContactDetails == '2') && (this.getStatus.BankDetails == '1' || this.getStatus.BankDetails == '2') && (this.getStatus.TaxDetails == '1' || this.getStatus.TaxDetails == '2') && (this.getStatus.FssaiDetails == '1' || this.getStatus.FssaiDetails == '2') && (this.getStatus.KycDetails == '1' || this.getStatus.KycDetails == '2'))) ? 'active' : 'inactive'">
+                        <button type="button" class="step-trigger" [disabled]="((this.getStatus.CommissionDetails == '0' || this.getStatus.CommissionDetails == '3') && ((this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2') && (this.getStatus.ContactDetails == '1' || this.getStatus.ContactDetails == '2') && (this.getStatus.BankDetails == '1' || this.getStatus.BankDetails == '2') && (this.getStatus.TaxDetails == '1' || this.getStatus.TaxDetails == '2') && (this.getStatus.FssaiDetails == '1' || this.getStatus.FssaiDetails == '2') && (this.getStatus.KycDetails == '1' || this.getStatus.KycDetails == '2'))) ? '' : 'true'">
+                            <span class="bs-stepper-box">
+                                <i data-feather="percent" class="font-medium-3"></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-title">Commission</span>
+                                <span class="bs-stepper-subtitle">Commission</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="line">
+                        <i data-feather="chevron-right" class="font-medium-2"></i>
+                    </div>
+                    <div class="step" data-target="#esign-details-modern" [ngClass]="((this.getStatus.eSignatureDetails == '0' || this.getStatus.eSignatureDetails == '3') && ((this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2') && (this.getStatus.ContactDetails == '1' || this.getStatus.ContactDetails == '2') && (this.getStatus.BankDetails == '1' || this.getStatus.BankDetails == '2') && (this.getStatus.TaxDetails == '1' || this.getStatus.TaxDetails == '2') && (this.getStatus.FssaiDetails == '1' || this.getStatus.FssaiDetails == '2') && (this.getStatus.KycDetails == '1' || this.getStatus.KycDetails == '2')  && (this.getStatus.CommissionDetails == '1' || this.getStatus.CommissionDetails == '2'))) ? 'active' : 'inactive'">
+                        <button type="button" class="step-trigger" [disabled]="((this.getStatus.eSignatureDetails == '0' || this.getStatus.eSignatureDetails == '3') && ((this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2') && (this.getStatus.ContactDetails == '1' || this.getStatus.ContactDetails == '2') && (this.getStatus.BankDetails == '1' || this.getStatus.BankDetails == '2') && (this.getStatus.TaxDetails == '1' || this.getStatus.TaxDetails == '2') && (this.getStatus.FssaiDetails == '1' || this.getStatus.FssaiDetails == '2') && (this.getStatus.KycDetails == '1' || this.getStatus.KycDetails == '2')  && (this.getStatus.CommissionDetails == '1' || this.getStatus.CommissionDetails == '2'))) ? '' : 'true'">
+                            <span class="bs-stepper-box">
+                                <i data-feather="download-cloud" class="font-medium-3"></i>
+                            </span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-title">E-Sign</span>
+                                <span class="bs-stepper-subtitle">E-Sign</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="bs-stepper-content">
+                    <div id="basic-details-modern" class="content" [ngClass]="(this.getStatus.BasicDetails == '0' || this.getStatus.BasicDetails == '3') ? 'active dstepper-block' : 'inactive dstepper-none'">
+                        <form [formGroup]="businessDetails" (ngSubmit)="basicDetails()" id="msform">
+                            <fieldset>
+                                <div class="content-header">
+                                    <h5 class="mb-0">Basic Details</h5>
+                                    <small class="text-muted">Enter Your Basic Details.</small>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-business_name">Business Name</label>
+                                        <input type="text" id="modern-business_name" class="form-control" formControlName="business_name" [ngClass]="{ 'is-invalid': business_step && basic.business_name.errors }" placeholder="Business Name" />
+                                        <div *ngIf="basic.business_name.touched && basic.business_name.invalid" class="text-danger mt-2">
+                                            <div *ngIf="basic.business_name.errors && basic.business_name.errors.required">
+                                                Business Name is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-phone">Phone Number</label>
+                                        <input type="text" id="modern-phone" class="form-control" formControlName="phone" #phone [ngClass]="{ 'is-invalid': business_step && basic.phone.errors }" placeholder="Phone Number" />
+                                        <div *ngIf="basic.phone.touched && basic.phone.invalid" class="text-danger mt-2">
+                                            <div *ngIf="basic.phone.errors && basic.phone.errors.required">Phone Number is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6" *ngIf="otpSent">
+                                        <label class="form-label" for="modern-otp">Otp</label>
+                                        <input type="text" id="modern-otp" class="form-control" formControlName="otp" [ngClass]="{ 'is-invalid': business_step && basic.otp.errors }" placeholder="Otp" />
+                                        <div *ngIf="basic.otp.touched && basic.otp.invalid" class="text-danger mt-2">
+                                            <div *ngIf="basic.otp.errors && basic.otp.errors.required">Otp is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-business_type">Business Type</label>
+                                        <select class="form-control" formControlName="business_type" id="modern-business_type" name="business_type">
+                                            <option value="" selected hidden>Please Select Business Type</option>
+                                            <option [value]="1+'+++'+'Seller'">Seller</option>
+                                            <option [value]="2+'+++'+'Service provider'">Service provider</option>
+                                            <option [value]="3+'+++'+'Seller & service provider'">Seller & service
+                                                provider</option>
+                                        </select>
+                                        <div *ngIf="basic.business_type.touched && basic.business_type.invalid" class="text-danger mt-2">
+                                            <div *ngIf="basic.business_type.errors && basic.business_type.errors.required">
+                                                Business Type is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-category">Category</label>
+                                        <select class="form-control" formControlName="category" id="modern-category" id="category" name="category">
+                                            <option value="" selected hidden>Please Select Category</option>
+                                            <option *ngFor="let category of this.categoriesList"
+                                                [value]="category._id+'+++'+category.name_english+'+++'+category.name_hindi">
+                                                {{category.name_english}}</option>
+                                        </select>
+                                        <div *ngIf="basic.category.touched && basic.category.invalid" class="text-danger mt-2">
+                                            <div *ngIf="basic.category.errors && basic.category.errors.required">
+                                                Category is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-country">Country</label>
+                                        <select class="form-control" (change)="countryChangeHandler($event)" formControlName="country" id="country" name="country">
+                                            <option value="" selected hidden>Please Select Country</option>
+                                            <option *ngFor="let country of this.countries"
+                                                [value]="country.id+'+++'+country.name">
+                                                {{country.name}}</option>
+                                        </select>
+                                        <div *ngIf="basic.country.touched && basic.country.invalid" class="text-danger mt-2">
+                                            <div *ngIf="basic.country.errors && basic.country.errors.required">Country is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-state">State</label>
+                                        <select class="form-control" (change)="stateChangeHandler($event)" formControlName="state" id="state" name="state">
+                                            <option value="" selected hidden>Please Select State</option>
+                                            <option *ngFor="let state of this.states"
+                                                [value]="state.id+'+++'+state.name">
+                                                {{state.name}}</option>
+                                        </select>
+                                        <div *ngIf="basic.state.touched && basic.state.invalid" class="text-danger mt-2">
+                                            <div *ngIf="basic.state.errors && basic.state.errors.required">State is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-city">City</label>
+                                        <select class="form-control" (change)="cityChangeHandler($event)" formControlName="city" id="city" name="city">
+                                            <option value="" selected hidden>Please Select City</option>
+                                            <option *ngFor="let city of this.cityList"
+                                                [value]="city.id+'+++'+city.name">
+                                                {{city.name}}</option>
+                                        </select>
+                                        <div *ngIf="basic.city.touched && basic.city.invalid" class="text-danger mt-2">
+                                            <div *ngIf="basic.city.errors && basic.city.errors.required">City is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-area">Area</label>
+                                        <select class="form-control" formControlName="area" id="area" name="area">
+                                            <option value="" selected hidden>Please Select Area</option>
+                                            <option *ngFor="let aitem of this.areaList"
+                                                [value]="aitem._id+'+++'+aitem.area_name">
+                                                {{aitem.area_name}}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="basic.area.touched && basic.area.invalid" class="text-danger mt-2">
+                                            <div *ngIf="basic.area.errors && basic.area.errors.required">Area is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-pincode">Pincode</label>
+                                        <input type="text" formControlName="pincode" id="modern-pincode" class="form-control" [ngClass]="{ 'is-invalid': business_step && basic.pincode.errors }" placeholder="Pincode" />
+                                        <div *ngIf="basic.pincode.touched && basic.pincode.invalid" class="text-danger mt-2">
+                                            <div *ngIf="basic.pincode.errors && basic.pincode.errors.required">Pincode is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-address_line_one">Address Line 1</label>
+                                        <input type="text" formControlName="address_line_one" id="modern-address_line_one" class="form-control" [ngClass]="{ 'is-invalid': business_step && basic.address_line_one.errors }" placeholder="Address Line 1" />
+                                        <div *ngIf="basic.address_line_one.touched && basic.address_line_one.invalid" class="text-danger mt-2">
+                                            <div *ngIf="basic.address_line_one.errors && basic.address_line_one.errors.required">
+                                                Address Line 1 is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-address_line_two">Address Line 2</label>
+                                        <input type="text" formControlName="address_line_two" id="modern-address_line_two" class="form-control" [ngClass]="{ 'is-invalid': business_step && basic.address_line_two.errors }" placeholder="Address Line 2" />
+                                        <div *ngIf="basic.address_line_two.touched && basic.address_line_two.invalid" class="text-danger mt-2">
+                                            <div *ngIf="basic.address_line_two.errors && basic.address_line_two.errors.required">
+                                                Address Line 2 is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-business_logo">Business Logo Image</label>
+                                        <input type="file" formControlName="business_logo" id="modern-business_logo" class="form-control" (change)="onFileChange($event)" [ngClass]="{ 'is-invalid': business_step && basic.business_logo.errors }" />
+                                        <div *ngIf="basic.business_logo.touched && basic.business_logo.invalid" class="text-danger mt-2">
+                                            <div *ngIf="basic.business_logo.errors && basic.business_logo.errors.required">
+                                                Business Logo is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button type="button" class="btn btn-primary btn-next" [disabled]="basic.phone.invalid" *ngIf="!otpSent" (click)="sendOtp();">Generate
+                                        Otp</button>
+                                    <button type="button" class="btn btn-primary btn-next" [disabled]="basic.otp.invalid" *ngIf="(otpSent && (!otpVerified))" (click)="verifyOtp();">Verify Otp</button>
+                                    <button type="submit" class="btn btn-primary btn-next" *ngIf="(registertoken && otpVerified)" [disabled]="!businessDetails.valid"><span
+                                            class="align-middle d-sm-inline-block d-none">Next</span>
+                                        <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i></button>
+
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div id="contact-info-modern" class="content" [ngClass]="((this.getStatus.ContactDetails == '0' || this.getStatus.ContactDetails == '3') && (this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2')) ? 'active dstepper-block' : 'inactive dstepper-none'">
+                        <form [formGroup]="contactPersonDetails" (ngSubmit)="addContactPerson()" id="msform2">
+                            <fieldset>
+                                <div class="content-header">
+                                    <h5 class="mb-0">Personal Info</h5>
+                                    <small>Enter Your Personal Info.</small>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-type">Please select you are the Owner or
+                                            the Manager?</label>
+                                        <select class="form-control" (change)="titleName($event)" formControlName="type" id="type" name="type">
+                                            <option value="" selected hidden>Please select</option>
+                                            <option [value]="'owner'">Owner</option>
+                                            <option [value]="'manager'">Manager</option>
+                                        </select>
+                                        <div *ngIf="contactPerson.type.touched && contactPerson.type.invalid" class="text-danger mt-2">
+                                            <div *ngIf="contactPerson.type.errors && contactPerson.type.errors.required">
+                                                Type is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6" *ngIf="title">
+                                        <label class="form-label" for="modern-name">{{title}} Name</label>
+                                        <input type="text" id="modern-name" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': contactPerson_step && contactPerson.name.errors }" placeholder="Name" />
+                                        <div *ngIf="contactPerson.name.touched && contactPerson.name.invalid" class="text-danger mt-2">
+                                            <div *ngIf="contactPerson.name.errors && contactPerson.name.errors.required">
+                                                Name is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6" *ngIf="title">
+                                        <label class="form-label" for="modern-email">{{title}} Email Id</label>
+                                        <input type="email" id="modern-email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': contactPerson_step && contactPerson.email.errors }" placeholder="Email Id" />
+                                        <div *ngIf="contactPerson.email.touched && contactPerson.email.invalid" class="text-danger mt-2">
+                                            <div *ngIf="contactPerson.email.errors && contactPerson.email.errors.required">
+                                                Email Id is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6" *ngIf="title">
+                                        <label class="form-label" for="modern-invoicing_email">{{title}} Invoicing Email
+                                            Id</label>
+                                        <input type="email" id="modern-invoicing_email" class="form-control" formControlName="invoicing_email" [ngClass]="{ 'is-invalid': contactPerson_step && contactPerson.invoicing_email.errors }" placeholder="Invoicing Email Id" />
+                                        <div *ngIf="contactPerson.invoicing_email.touched && contactPerson.invoicing_email.invalid" class="text-danger mt-2">
+                                            <div *ngIf="contactPerson.invoicing_email.errors && contactPerson.invoicing_email.errors.required">
+                                                Invoicing Email Id is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button type="submit" class="btn btn-primary btn-next" [disabled]="!contactPersonDetails.valid"><span
+                                            class="align-middle d-sm-inline-block d-none">Next</span>
+                                        <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i></button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div id="bank-details-modern" class="content" [ngClass]="((this.getStatus.BankDetails == '0' || this.getStatus.BankDetails == '3') && ((this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2') && (this.getStatus.ContactDetails == '1' || this.getStatus.ContactDetails == '2'))) ? 'active dstepper-block' : 'inactive dstepper-none'">
+                        <form [formGroup]="bankDetails" (ngSubmit)="addBank()" id="msform">
+                            <fieldset>
+                                <div class="content-header">
+                                    <h5 class="mb-0">Bank Details</h5>
+                                    <small>Enter Your Bank Details.</small>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-account_number">Account Number</label>
+                                        <input type="text" id="modern-account_number" class="form-control" formControlName="account_number" [ngClass]="{ 'is-invalid': bank_step && bank.account_number.errors }" placeholder="Account Number" />
+                                        <div *ngIf="bank.account_number.touched && bank.account_number.invalid" class="text-danger mt-2">
+                                            <div *ngIf="bank.account_number.errors && bank.account_number.errors.required">
+                                                Account Number is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-ifsc_code">IFSC code</label>
+                                        <input type="text" id="modern-ifsc_code" class="form-control" formControlName="ifsc_code" (keyup)="fetchBankName($event)" (change)="fetchBankName($event)" [ngClass]="{ 'is-invalid': bank_step && bank.ifsc_code.errors }" placeholder="IFSC code" />
+                                        <div *ngIf="bank.ifsc_code.touched && bank.ifsc_code.invalid" class="text-danger mt-2">
+                                            <div *ngIf="bank.ifsc_code.errors && bank.ifsc_code.errors.required">
+                                                IFSC code is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6" *ngIf="this.bankname">
+                                        <label class="form-label" for="modern-branch_name">Branch Name</label>
+                                        <input type="text" readonly id="modern-branch_name" class="form-control" formControlName="branch_name" [(ngModel)]="this.bankname.branch" [ngClass]="{ 'is-invalid': bank_step && bank.branch_name.errors }" placeholder="Branch Name" />
+                                        <div *ngIf="bank.branch_name.touched && bank.branch_name.invalid" class="text-danger mt-2">
+                                            <div *ngIf="bank.branch_name.errors && bank.branch_name.errors.required">
+                                                Branch Name is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6" *ngIf="this.bankname">
+                                        <label class="form-label" for="modern-bank_name">Bank Name</label>
+                                        <input type="text" readonly id="modern-bank_name" class="form-control" formControlName="bank_name" [(ngModel)]="this.bankname.bank_name" [ngClass]="{ 'is-invalid': bank_step && bank.bank_name.errors }" placeholder="Bank Name" />
+                                        <div *ngIf="bank.bank_name.touched && bank.bank_name.invalid" class="text-danger mt-2">
+                                            <div *ngIf="bank.bank_name.errors && bank.bank_name.errors.required">
+                                                Bank Name is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-beneficiary_name">Beneficiary Name</label>
+                                        <input type="text" id="modern-beneficiary_name" class="form-control" formControlName="beneficiary_name" [ngClass]="{ 'is-invalid': bank_step && bank.beneficiary_name.errors }" placeholder="Beneficiary Name" />
+                                        <div *ngIf="bank.beneficiary_name.touched && bank.beneficiary_name.invalid" class="text-danger mt-2">
+                                            <div *ngIf="bank.beneficiary_name.errors && bank.beneficiary_name.errors.required">
+                                                Beneficiary Name is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-file_type">Cancelled Cheque/Bank Passbook
+                                            first page/ Bank Statement with bank details Upload
+                                            Type</label>
+                                        <select class="form-control" (change)="bankDocumentType($event)" formControlName="file_type" id="file_type" name="file_type">
+                                            <option value="" selected hidden>Please Select File Type</option>
+                                            <option [value]="'image'">Image</option>
+                                            <option [value]="'document'">Document</option>
+                                        </select>
+                                        <div *ngIf="bank.file_type.touched && bank.file_type.invalid" class="text-danger mt-2">
+                                            <div *ngIf="bank.file_type.errors && bank.file_type.errors.required">
+                                                File Type is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6" *ngIf="bankFileType">
+                                        <label class="form-label" for="modern-document">Upload Cancelled Cheque/Bank
+                                            Passbook first page/ Bank Statement with bank details
+                                            Document or Image</label>
+                                        <input type="file" formControlName="document" id="modern-document" class="form-control" (change)="onBankFileChange($event)" [ngClass]="{ 'is-invalid': bank_step && bank.document.errors }" />
+                                        <div *ngIf="bank.document.touched && bank.document.invalid" class="text-danger mt-2">
+                                            <div *ngIf="bank.document.errors && bank.document.errors.required">
+                                                Document is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button type="submit" class="btn btn-primary btn-next" [disabled]="!bankDetails.valid"><span
+                                            class="align-middle d-sm-inline-block d-none">Next</span>
+                                        <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i></button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div id="tax-details-modern" class="content" [ngClass]="((this.getStatus.TaxDetails == '0' || this.getStatus.TaxDetails == '3') && ((this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2') && (this.getStatus.ContactDetails == '1' || this.getStatus.ContactDetails == '2') && (this.getStatus.BankDetails == '1' || this.getStatus.BankDetails == '2'))) ? 'active dstepper-block' : 'inactive dstepper-none'">
+                        <form [formGroup]="taxDetails" (ngSubmit)="addTax()" id="msform" novalidate>
+                            <fieldset>
+                                <div class="content-header">
+                                    <h5 class="mb-0">Tax Details</h5>
+                                    <small>Enter Your Tax Details.</small>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-pancardfile_type">Pancard Document Upload
+                                            type</label>
+                                        <select class="form-control" (change)="pancardDocumentType($event)" formControlName="pancardfile_type" id="pancardfile_type" name="pancardfile_type">
+                                            <option value="" selected hidden>Please Select Pancard Document Upload type
+                                            </option>
+                                            <option [value]="'image'">Image</option>
+                                            <option [value]="'document'">Document</option>
+                                        </select>
+                                        <div *ngIf="tax.pancardfile_type.touched && tax.pancardfile_type.invalid" class="text-danger mt-2">
+                                            <div *ngIf="tax.pancardfile_type.errors && tax.pancardfile_type.errors.required">
+                                                Pancard Document Upload type is required.</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-6" *ngIf="pancardFileType">
+                                        <label class="form-label" for="modern-pancard_image">Pancard Document
+                                            Image</label>
+                                        <input type="file" formControlName="pancard_image" id="modern-pancard_image" class="form-control" (change)="onPancardFileChange($event)" [ngClass]="{ 'is-invalid': tax_step && tax.pancard_image.errors }" />
+                                        <div *ngIf="tax.pancard_image.touched && tax.pancard_image.invalid" class="text-danger mt-2">
+                                            <div *ngIf="tax.pancard_image.errors && tax.pancard_image.errors.required">
+                                                Pancard Image is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-pancard_number">Pancard Number</label>
+                                        <input type="text" id="modern-pancard_number" class="form-control" formControlName="pancard_number" [ngClass]="{ 'is-invalid': tax_step && tax.pancard_number.errors }" placeholder="Pancard Number" />
+                                        <div *ngIf="tax.pancard_number.touched && tax.pancard_number.invalid" class="text-danger mt-2">
+                                            <div *ngIf="tax.pancard_number.errors && tax.pancard_number.errors.required">
+                                                Pancard Number is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-turnOver">Turnover</label>
+                                        <input type="text" id="modern-turnOver" class="form-control" formControlName="turnOver" [ngClass]="{ 'is-invalid': tax_step && tax.turnOver.errors }" placeholder="Turnover" />
+                                        <div *ngIf="tax.turnOver.touched && tax.turnOver.invalid" class="text-danger mt-2">
+                                            <div *ngIf="tax.turnOver.errors && tax.turnOver.errors.required">
+                                                Turnover is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-is_available">Do you Have a GSTIN?
+                                        </label>
+                                        <input type="checkbox" (change)="haveGST($event)" name="is_available" formControlName="is_available">
+
+                                    </div>
+                                    <div class="form-group col-md-6" *ngIf="(taxDetails.value.is_available)">
+                                        <label class="form-label" for="modern-gst_number">GST Number</label>
+                                        <input type="text" id="modern-gst_number" class="form-control" formControlName="gst_number" [ngClass]="{ 'is-invalid': tax_step && tax.gst_number.errors }" placeholder="GST Number" />
+                                        <div *ngIf="tax.gst_number.touched && tax.gst_number.invalid" class="text-danger mt-2">
+                                            <div *ngIf="tax.gst_number.errors && tax.gst_number.errors.required">
+                                                GST Number is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6" *ngIf="(taxDetails.value.is_available)">
+                                        <label class="form-label" for="modern-gstfile_type">GST Document Upload type</label>
+                                        <select class="form-control" (change)="gstDocumentType($event)" formControlName="gstfile_type" id="gstfile_type" name="gstfile_type">
+                                            <option value="" selected hidden>Please Select GST Document Upload type</option>
+                                            <option [value]="'image'">Image</option>
+                                            <option [value]="'document'">Document</option>
+                                        </select>
+                                        <div *ngIf="tax.gstfile_type.touched && tax.gstfile_type.invalid" class="text-danger mt-2">
+                                            <div *ngIf="tax.gstfile_type.errors && tax.gstfile_type.errors.required">
+                                                GST Document Upload type is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6" *ngIf="gstFileType && (taxDetails.value.is_available)">
+                                        <label class="form-label" for="modern-gst_image">GST Document Image</label>
+                                        <input type="file" formControlName="gst_image" id="modern-gst_image" class="form-control" (change)="onGstFileChange($event)" [ngClass]="{ 'is-invalid': tax_step && tax.gst_image.errors }" />
+                                        <div *ngIf="tax.gst_image.touched && tax.gst_image.invalid" class="text-danger mt-2">
+                                            <div *ngIf="tax.gst_image.errors && tax.gst_image.errors.required">
+                                                GST Document Image is required.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button type="submit" class="btn btn-primary btn-next" [disabled]="!taxDetails.valid"><span
+                                            class="align-middle d-sm-inline-block d-none">Next</span>
+                                        <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i></button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div id="fssai-details-modern" class="content" [ngClass]="((this.getStatus.FssaiDetails == '0' || this.getStatus.FssaiDetails == '3') && ((this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2') && (this.getStatus.ContactDetails == '1' || this.getStatus.ContactDetails == '2') && (this.getStatus.BankDetails == '1' || this.getStatus.BankDetails == '2') && (this.getStatus.TaxDetails == '1' || this.getStatus.TaxDetails == '2'))) ? 'active dstepper-block' : 'inactive dstepper-none'">
+                        <form [formGroup]="fssaiDetails" (ngSubmit)="addFssai()" id="msform" novalidate>
+                            <fieldset>
+                                <div class="content-header">
+                                    <h5 class="mb-0">Fssai Details</h5>
+                                    <small>Enter Your Fssai Details.</small>
+                                </div>
+                                <div class="row">
+
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-availability">Do you Have a valid FSSAI Registration/License?</label>
+                                        <input type="checkbox" (change)="haveFssai($event)" name="availability" formControlName="availability">
+                                    </div>
+                                    <div class="form-group col-md-6" *ngIf="(fssaiDetails.value.availability)">
+                                        <label class="form-label" for="modern-fssai_number">FSSAI Register Number</label>
+                                        <input type="text" id="modern-fssai_number" class="form-control" formControlName="fssai_number" [ngClass]="{ 'is-invalid': fssai_step && fssai.fssai_number.errors }" placeholder="FSSAI Register Number" />
+                                        <div *ngIf="fssai.fssai_number.touched && fssai.fssai_number.invalid" class="text-danger mt-2">
+                                            <div *ngIf="fssai.fssai_number.errors && fssai.fssai_number.errors.required">
+                                                FSSAI Register Number is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6" *ngIf="(fssaiDetails.value.availability)">
+                                        <label class="form-label" for="modern-fssaifile_type">FSSAI Document Upload type</label>
+                                        <select class="form-control" (change)="fssaiDocumentType($event)" formControlName="fssaifile_type" id="fssaifile_type" name="fssaifile_type">
+                                            <option value="" selected hidden>Please Select FSSAI Document Upload type</option>
+                                            <option [value]="'image'">Image</option>
+                                            <option [value]="'document'">Document</option>
+                                        </select>
+                                        <div *ngIf="fssai.fssaifile_type.touched && fssai.fssaifile_type.invalid" class="text-danger mt-2">
+                                            <div *ngIf="fssai.fssaifile_type.errors && fssai.fssaifile_type.errors.required">
+                                                FSSAI Document Upload type is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6" *ngIf="fssaiFileType && (fssaiDetails.value.availability)">
+                                        <label class="form-label" for="modern-fssai_image">FSSAI Document Image</label>
+                                        <input type="file" formControlName="fssai_image" id="modern-fssai_image" class="form-control" (change)="onFssaiFileChange($event)" [ngClass]="{ 'is-invalid': fssai_step && fssai.fssai_image.errors }" />
+                                        <div *ngIf="fssai.fssai_image.touched && fssai.fssai_image.invalid" class="text-danger mt-2">
+                                            <div *ngIf="fssai.fssai_image.errors && fssai.fssai_image.errors.required">
+                                                FSSAI Document Image is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6" *ngIf="!(fssaiDetails.value.availability)">
+                                        <label class="form-label" for="modern-acknowledgement_number">FSSAI Acknowledgement number</label>
+                                        <input type="text" id="modern-acknowledgement_number" class="form-control" formControlName="acknowledgement_number" [ngClass]="{ 'is-invalid': fssai_step && fssai.acknowledgement_number.errors }" placeholder="FSSAI Acknowledgement number" />
+                                        <div *ngIf="fssai.acknowledgement_number.touched && fssai.acknowledgement_number.invalid" class="text-danger mt-2">
+                                            <div *ngIf="fssai.acknowledgement_number.errors && fssai.acknowledgement_number.errors.required">
+                                                FSSAI Acknowledgement number is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6" *ngIf="!(fssaiDetails.value.availability)">
+                                        <label class="form-label" for="modern-acknowledgement_applydate">Date of Application</label>
+                                        <input type="date" id="modern-acknowledgement_applydate" class="form-control" formControlName="acknowledgement_applydate" [ngClass]="{ 'is-invalid': fssai_step && fssai.acknowledgement_applydate.errors }" placeholder="Date of Application" />
+                                        <div *ngIf="fssai.acknowledgement_applydate.touched && fssai.acknowledgement_applydate.invalid" class="text-danger mt-2">
+                                            <div *ngIf="fssai.acknowledgement_applydate.errors && fssai.acknowledgement_applydate.errors.required">
+                                                Date of Application is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button type="submit" class="btn btn-primary btn-next" [disabled]="!fssaiDetails.valid"><span
+                                            class="align-middle d-sm-inline-block d-none">Next</span>
+                                        <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i></button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div id="kyc-details-modern" class="content" [ngClass]="((this.getStatus.KycDetails == '0' || this.getStatus.KycDetails == '3') && ((this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2') && (this.getStatus.ContactDetails == '1' || this.getStatus.ContactDetails == '2') && (this.getStatus.BankDetails == '1' || this.getStatus.BankDetails == '2') && (this.getStatus.TaxDetails == '1' || this.getStatus.TaxDetails == '2') && (this.getStatus.FssaiDetails == '1' || this.getStatus.FssaiDetails == '2'))) ? 'active dstepper-block' : 'inactive dstepper-none'">
+                        <form [formGroup]="kycDetails" (ngSubmit)="addKyc()" id="msform">
+                            <fieldset *ngIf="(((this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2') && (this.getStatus.ContactDetails == '1' || this.getStatus.ContactDetails == '2') && (this.getStatus.BankDetails == '1' || this.getStatus.BankDetails == '2') && (this.getStatus.TaxDetails == '1' || this.getStatus.TaxDetails == '2') && (this.getStatus.FssaiDetails == '1' || this.getStatus.FssaiDetails == '2')) && (this.getStatus.KycDetails == '0' || this.getStatus.KycDetails == '3'))">
+                                <div class="content-header">
+                                    <h5 class="mb-0">Kyc Details</h5>
+                                    <small>Enter Your Kyc Details.</small>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-aadhar_number">Aadhaarcard Number</label>
+                                        <input type="text" id="modern-aadhar_number" class="form-control" formControlName="aadhar_number" [ngClass]="{ 'is-invalid': kyc_step && kyc.aadhar_number.errors }" placeholder="Aadhaarcard Number" />
+                                        <div *ngIf="kyc.aadhar_number.touched && kyc.aadhar_number.invalid" class="text-danger mt-2">
+                                            <div *ngIf="kyc.aadhar_number.errors && kyc.aadhar_number.errors.required">
+                                                Aadhaarcard Number is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-aadhar_frontfile_type">Aadhaarcard Front Document Upload type</label>
+                                        <select class="form-control" (change)="aadhar_frontDocumentType($event)" formControlName="aadhar_frontfile_type" id="aadhar_frontfile_type" name="aadhar_frontfile_type">
+                                            <option value="" selected hidden>Please Select Aadhaarcard Front Document Upload type</option>
+                                            <option [value]="'image'">Image</option>
+                                            <option [value]="'document'">Document</option>
+                                        </select>
+                                        <div *ngIf="kyc.aadhar_frontfile_type.touched && kyc.aadhar_frontfile_type.invalid" class="text-danger mt-2">
+                                            <div *ngIf="kyc.aadhar_frontfile_type.errors && kyc.aadhar_frontfile_type.errors.required">
+                                                Aadhaarcard Front Document Upload type is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6" *ngIf="aadharfrontFileType">
+                                        <label class="form-label" for="modern-aadhar_front">Aadhaarcard Front Image</label>
+                                        <input type="file" formControlName="aadhar_front" id="modern-aadhar_front" class="form-control" (change)="onAdharFrontFileChange($event)" [ngClass]="{ 'is-invalid': kyc_step && kyc.aadhar_front.errors }" />
+                                        <div *ngIf="kyc.aadhar_front.touched && kyc.aadhar_front.invalid" class="text-danger mt-2">
+                                            <div *ngIf="kyc.aadhar_front.errors && kyc.aadhar_front.errors.required">
+                                                Aadhaarcard Front Image is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-aadhar_backfile_type">Aadhaarcard Back Document Upload type</label>
+                                        <select class="form-control" (change)="aadhar_backDocumentType($event)" formControlName="aadhar_backfile_type" id="aadhar_backfile_type" name="aadhar_backfile_type">
+                                            <option value="" selected hidden>Please Select Aadhaarcard Back Document Upload type</option>
+                                            <option [value]="'image'">Image</option>
+                                            <option [value]="'document'">Document</option>
+                                        </select>
+                                        <div *ngIf="kyc.aadhar_backfile_type.touched && kyc.aadhar_backfile_type.invalid" class="text-danger mt-2">
+                                            <div *ngIf="kyc.aadhar_backfile_type.errors && kyc.aadhar_backfile_type.errors.required">
+                                                Aadhaarcard Back Document Upload type is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6" *ngIf="aadharbackFile_type">
+                                        <label class="form-label" for="modern-aadhar_back">Aadhaarcard Back Image</label>
+                                        <input type="file" formControlName="aadhar_back" id="modern-aadhar_back" class="form-control" (change)="onAdharBackFileChange($event)" [ngClass]="{ 'is-invalid': kyc_step && kyc.aadhar_back.errors }" />
+                                        <div *ngIf="kyc.aadhar_back.touched && kyc.aadhar_back.invalid" class="text-danger mt-2">
+                                            <div *ngIf="kyc.aadhar_back.errors && kyc.aadhar_back.errors.required">
+                                                Aadhaarcard Back Image is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button type="submit" class="btn btn-primary btn-next" [disabled]="!kycDetails.valid"><span
+                                            class="align-middle d-sm-inline-block d-none">Next</span>
+                                        <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i></button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div id="commission-details-modern" class="content" [ngClass]="((this.getStatus.CommissionDetails == '0' || this.getStatus.CommissionDetails == '3') && ((this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2') && (this.getStatus.ContactDetails == '1' || this.getStatus.ContactDetails == '2') && (this.getStatus.BankDetails == '1' || this.getStatus.BankDetails == '2') && (this.getStatus.TaxDetails == '1' || this.getStatus.TaxDetails == '2') && (this.getStatus.FssaiDetails == '1' || this.getStatus.FssaiDetails == '2') && (this.getStatus.KycDetails == '1' || this.getStatus.KycDetails == '2'))) ? 'active dstepper-block' : 'inactive dstepper-none'">
+                        <form [formGroup]="commissionDetails" (ngSubmit)="addCommission()" id="msform">
+                            <fieldset>
+                                <div class="content-header">
+                                    <h5 class="mb-0">Commission Details</h5>
+                                    <small>Enter Your Commission Details.</small>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-rate">Commission Rate</label>
+                                        <select class="form-control" formControlName="rate" id="modern-rate" id="rate" name="rate">
+                                            <option value="" selected hidden>Please Select Commission Rate</option>
+                                            <option [value]="this.commissionRateList.commission_rate">
+                                                {{this.commissionRateList.commission_rate}}</option>
+                                        </select>
+                                        <div *ngIf="commission.rate.touched && commission.rate.invalid" class="text-danger mt-2">
+                                            <div *ngIf="commission.rate.errors && commission.rate.errors.required">
+                                                Commission Rate is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button type="submit" class="btn btn-primary btn-next" [disabled]="!commissionDetails.valid"><span
+                                            class="align-middle d-sm-inline-block d-none">Next</span>
+                                        <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i></button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div id="esign-details-modern" class="content" [ngClass]="((this.getStatus.eSignatureDetails == '0' || this.getStatus.eSignatureDetails == '3') && ((this.getStatus.BasicDetails == '1' || this.getStatus.BasicDetails == '2') && (this.getStatus.ContactDetails == '1' || this.getStatus.ContactDetails == '2') && (this.getStatus.BankDetails == '1' || this.getStatus.BankDetails == '2') && (this.getStatus.TaxDetails == '1' || this.getStatus.TaxDetails == '2') && (this.getStatus.FssaiDetails == '1' || this.getStatus.FssaiDetails == '2') && (this.getStatus.KycDetails == '1' || this.getStatus.KycDetails == '2')  && (this.getStatus.CommissionDetails == '1' || this.getStatus.CommissionDetails == '2'))) ? 'active dstepper-block' : 'inactive dstepper-none'">
+                        <form [formGroup]="eSignatureDetails" (ngSubmit)="addESign()" id="msform" novalidate>
+                            <fieldset>
+                                <div class="content-header">
+                                    <h5 class="mb-0">E-Sign Details</h5>
+                                    <small>Enter Your E-Sign Details.</small>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-twitter">Twitter</label>
+                                        <input type="text" id="modern-twitter" class="form-control" placeholder="https://twitter.com/abc" />
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="modern-facebook">Facebook</label>
+                                        <input type="text" id="modern-facebook" class="form-control" placeholder="https://facebook.com/abc" />
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button type="submit" class="btn btn-primary btn-next" [disabled]="!eSignatureDetails.valid"><span
+                                            class="align-middle d-sm-inline-block d-none">Next</span>
+                                        <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i></button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /Modern Horizontal Wizard -->
+
+    </div>
+</div>

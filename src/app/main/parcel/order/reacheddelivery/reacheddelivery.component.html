@@ -1,0 +1,276 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <!-- content-header component -->
+        <app-content-header [contentHeader]="contentHeader"></app-content-header>
+        <div class="row" id="table-striped">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Reached Delivery List</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6 select-box-bg">
+                                <div class="d-flex justify-content-between align-items-center m-1">
+                                    <label class="d-flex align-items-center">Show
+                                        <select (change)="handlePageSizeChange($event)" class="form-control mx-25">
+                                            <option *ngFor="let size of pageSizes" [ngValue]="size">
+                                                {{ size }}
+                                            </option>
+                                        </select>
+                                     Entries</label
+                                  >
+                                </div>                                
+                            </div>
+                            <div class="col-lg-6 d-flex justify-content-md-end">
+                                <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pl-1 pl-md-0 pb-md-0">
+                                    <label class="d-flex align-items-center"><span class="search">Search</span> <input type="text" class="form-control search-form-control" placeholder="Type to search" [(ngModel)]="data"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table datatable class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>ORDERID</th>
+                                    <th>Delivery Amount</th>
+                                    <th>Order Date</th>
+                                    <th>Sender</th>
+                                    <th>Receiver</th>
+                                    <th>Parcel Category</th>
+                                    <th>Order Status</th>
+                                    <th>Payment Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let orders of ordersList | filter: data | paginate : { itemsPerPage: pageSize, currentPage: page, totalItems: count }; let i=index">
+                                    <td>{{i+1}}</td>
+                                    <td>PRCL{{orders.ORDERID}}</td>
+                                    <td>{{orders.delivery_amount}}</td>
+                                    <td>{{orders.time.order_at}}</td>
+                                    <td>
+                                        <ul>
+                                            <li>{{orders.sender.name}}</li>
+                                            <li>{{orders.sender.contact}}</li>
+                                            <li>{{orders.sender.location}}</li>
+                                            <li>{{orders.sender.address.house}} {{orders.sender.address.area}} {{orders.sender.address.direction}}</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li>{{orders.receiver.name}}</li>
+                                            <li>{{orders.receiver.contact}}</li>
+                                            <li>{{orders.receiver.location}}</li>
+                                            <li>{{orders.receiver.address.house}} {{orders.receiver.address.area}} {{orders.receiver.address.direction}}</li>
+                                        </ul>
+                                    </td>
+                                    <td>{{orders.parcel_category.name}}</td>
+                                    <td *ngIf="orders.order_status == '0'">Order Processing</td>
+                                    <td *ngIf="orders.order_status == '2'">Partner Assigned</td>
+                                    <td *ngIf="orders.order_status == '3'">Out For Pickup</td>
+                                    <td *ngIf="orders.order_status == '4'">Reached Pickup</td>
+                                    <td *ngIf="orders.order_status == '5'">Picked Up</td>
+                                    <td *ngIf="orders.order_status == '6'">Out For Delivery</td>
+                                    <td *ngIf="orders.order_status == '7'">Reached Delivery</td>
+                                    <td *ngIf="orders.order_status == '8'">Cancel By User</td>
+                                    <td *ngIf="orders.order_status == '9'">Cancel By Fablo</td>
+                                    <td *ngIf="orders.order_status == '10'">Cancel By Delivery Partner</td>
+                                    <td *ngIf="orders.order_status == '1'">Delivered</td>
+                                    <td>{{orders.payment.payment_status}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-info" (click)="getOrderDetails(modalSuccess, orders.ORDERID)" rippleEffect>View More</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true" (pageChange)="handlePageChange($event)" class="d-flex pagination-section justify-content-center"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<ng-template #modalSuccess let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel160">Order Details</h5>
+        <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" tabindex="0" ngbAutofocus>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Basic Details</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">ORDERID : </div>
+                            <div class="col-sm-6">PRCL{{this.getDetails.ORDERID}}</div>
+                            <div class="col-sm-6 mt-2">Delivery Type : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.delivery_type}}</div>
+                            <div class="col-sm-6 mt-2">Distance : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.distance}}</div>
+                            <div class="col-sm-6 mt-2">Delivery Amount : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.delivery_amount}}</div>
+                            <div class="col-sm-6 mt-2">Cancellation Reason : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.cancellation_reason}}</div>
+                            <div class="col-sm-6 mt-2">Track Link : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.track_link}}</div>
+                            <div class="col-sm-6 mt-2">Parcel Category: </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.parcel_category.name}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Time Details</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">Draft At : </div>
+                            <div class="col-sm-6">{{this.getDetails.time.draft_at}}</div>
+                            <div class="col-sm-6 mt-2">Order At : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.time.order_at}}</div>
+                            <div class="col-sm-6 mt-2">Assigned At : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.time.assigned_at}}</div>
+                            <div class="col-sm-6 mt-2">Accepted At : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.time.accepted_at}}</div>
+                            <div class="col-sm-6 mt-2">Picked Up At : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.time.picked_up_at}}</div>
+                            <div class="col-sm-6 mt-2">Estimated Delivery At : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.time.estimated_delivered_at}}</div>
+                            <div class="col-sm-6 mt-2">Delivered At : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.time.delivered_at}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Sender Details</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">Name : </div>
+                            <div class="col-sm-6">{{this.getDetails.sender.name}}</div>
+                            <div class="col-sm-6 mt-2">Contact : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.sender.contact}}</div>
+                            <div class="col-sm-6 mt-2">Location : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.sender.location}}</div>
+                            <div class="col-sm-6 mt-2">Address: </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.sender.address.house}} {{this.getDetails.sender.address.area}} {{this.getDetails.sender.address.direction}}</div>
+                            <div class="col-sm-6 mt-2">Address Tag : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.sender.addressTag}}</div>
+                            <div class="col-sm-6 mt-2">Address Name : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.sender.addressName}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Receiver Details</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">Name : </div>
+                            <div class="col-sm-6">{{this.getDetails.receiver.name}}</div>
+                            <div class="col-sm-6 mt-2">Contact : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.receiver.contact}}</div>
+                            <div class="col-sm-6 mt-2">Location : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.receiver.location}}</div>
+                            <div class="col-sm-6 mt-2">Address: </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.receiver.address.house}} {{this.getDetails.receiver.address.area}} {{this.getDetails.receiver.address.direction}}</div>
+                            <div class="col-sm-6 mt-2">Address Tag : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.receiver.addressTag}}</div>
+                            <div class="col-sm-6 mt-2">Address Name : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.receiver.addressName}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Payment Details</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">Pay Type : </div>
+                            <div class="col-sm-6">{{this.getDetails.payment.pay_type}}</div>
+                            <div class="col-sm-6 mt-2">Paid By : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.payment.paid_by}}</div>
+                            <div class="col-sm-6 mt-2">Payment Status : </div>
+                            <div class="col-sm-6 mt-2" *ngIf="this.getDetails.payment.payment_status == 'not_paid'">Not Paid</div>
+                            <div class="col-sm-6 mt-2" *ngIf="this.getDetails.payment.payment_status == 'paid'">Paid</div>
+                            <div class="col-sm-6 mt-2">Payment Gateway : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.payment.payment_gateway}}</div>
+                            <div class="col-sm-6 mt-2">Payment Mode : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.payment.payment_mode}}</div>
+                            <div class="col-sm-6 mt-2">Payment ID : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.payment.payment_id}}</div>
+                            <div class="col-sm-6 mt-2">Pay Amount : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.payment.paid_amount}}</div>
+                            <div class="col-sm-6 mt-2">Pay Time : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.payment.pay_time}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Delivery Partner Details</h4>
+                    </div>
+                    <div class="card-body" *ngIf="this.getDetails.delivery_partner.assigned == true">
+                        <div class="row">
+                            <div class="col-sm-6">Name : </div>
+                            <div class="col-sm-6">{{this.getDetails.delivery_partner.name}}</div>
+                            <div class="col-sm-6 mt-2">Contact : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.delivery_partner.contact}}</div>
+                            <div class="col-sm-6 mt-2">Estimated Earning : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.delivery_partner.estimated_earning}}</div>
+                            <div class="col-sm-6 mt-2">Earning From Order : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.delivery_partner.earningFromOrder}}</div>
+                            <div class="col-sm-6 mt-2">COD Amount To Collect : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.delivery_partner.codAmountToCollect}}</div>
+                            <div class="col-sm-6 mt-2">COD Amount Collected : </div>
+                            <div class="col-sm-6 mt-2">{{this.getDetails.delivery_partner.codAmountCollected}}</div>
+                            <div class="col-sm-6 mt-2">Image : </div>
+                            <div class="col-sm-6 mt-2" *ngIf="this.getDetails.delivery_partner.image">
+                                <img src="{{this.getDetails.delivery_partner.image}}" height="100px" width="100px">
+                            </div>
+                            <div class="col-sm-6 mt-2" *ngIf="!this.getDetails.delivery_partner.image">
+                                <img src="../../../../../assets/images/notAvailable.jpg" height="100px" width="100px">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body" *ngIf="!this.getDetails.delivery_partner.assigned == true">
+                        <h6>Not Assigned Yet</h6>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+
+    </div>
+</ng-template>
+<!-- / Modal -->

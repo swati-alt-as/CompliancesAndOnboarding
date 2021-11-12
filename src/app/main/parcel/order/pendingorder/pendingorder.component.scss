@@ -1,0 +1,139 @@
+agm-map {
+    height: 555px;
+    // width: 600px;
+}
+
+.wrapper {
+    overflow: hidden;
+}
+
+.map-delivery-sec {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    padding-top: 50px;
+}
+
+.map-delivery {
+    width: 100%;
+    transition: all 0.3s;
+}
+
+.delivery-boy-details {
+    opacity: 1;
+    padding: 10px 20px;
+    box-shadow: 0 0 20px rgb(0 0 0 / 30%);
+    background: #fff;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    transition: all 0.3s;
+}
+
+#delivery-boy-details {
+    min-width: 250px;
+    max-width: 250px;
+}
+
+#delivery-boy-details.active {
+    margin-right: -350px;
+}
+
+.map-wrapper-main .sebm-google-map-container {
+    width: 100%;
+}
+
+.map-wrapper-main {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+
+/* width */
+
+.delivery-boy-details::-webkit-scrollbar {
+    width: 7px;
+}
+
+
+/* Track */
+
+.delivery-boy-details::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+
+/* Handle */
+
+.delivery-boy-details::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+
+/* Handle on hover */
+
+.delivery-boy-details::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.address-delivery-boy a {
+    color: #000;
+    text-decoration: none;
+    display: flex;
+    font-size: 14px;
+}
+
+.address-delivery-boy i {
+    font-size: 16px;
+    margin: 4px 10px 0px 0px;
+}
+
+.address-delivery-boy span {
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.address-delivery-boy {
+    padding: 5px 0px;
+}
+
+.status-btns a {
+    width: 80px;
+    padding: 4px 10px;
+    font-size: 14px;
+}
+
+.status-btns a:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.status-btns {
+    padding: 10px 0px;
+}
+
+.status-btns a:last-child {
+    margin-left: 15px;
+}
+
+#ten-countdown {
+    width: 200px;
+    height: 200px;
+    padding: 25px;
+    color: #004853;
+    display: block;
+    margin: 0 auto;
+    font-size: 40px;
+    margin-top: 70px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 8.5rem;
+    border-radius: 100%;
+    text-decoration: none;
+    border: 5px solid #004853;
+}
+
+.ml {
+    margin-left: 10px;
+}

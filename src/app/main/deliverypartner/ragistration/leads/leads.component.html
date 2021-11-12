@@ -1,0 +1,59 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <!-- content-header component -->
+        <app-content-header [contentHeader]="contentHeader"></app-content-header>
+        <div class="row" id="table-striped">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">All Leads List</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6 select-box-bg">
+                                <div class="d-flex justify-content-between align-items-center m-1">
+                                    <label class="d-flex align-items-center">Show
+                                        <select (change)="handlePageSizeChange($event)" class="form-control mx-25">
+                                            <option *ngFor="let size of pageSizes" [ngValue]="size">
+                                                {{ size }}
+                                            </option>
+                                        </select>
+                                        Entries</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 d-flex justify-content-md-end">
+                                <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pl-1 pl-md-0 pb-md-0">
+                                    <label class="d-flex align-items-center"><span class="search">Search</span> <input
+                                            type="text" class="form-control search-form-control"
+                                            placeholder="Type to search" [(ngModel)]="data"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive-lg">
+                        <table datatable class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Contact Number</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let partners of partnerDetails | filter: data | paginate : { itemsPerPage: pageSize, currentPage: page, totalItems: count }; let i=index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{partners.phone}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-info" routerLink="/delivery_partner/register/onboard/{{partners.token}}/{{partners.phone}}" rippleEffect>Register</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true" (pageChange)="handlePageChange($event)" class="d-flex pagination-section justify-content-center"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

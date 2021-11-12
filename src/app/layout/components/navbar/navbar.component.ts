@@ -31,7 +31,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public prevSkin: string;
 
   public currentUser: User;
-
+  
+  public userDetails: any;
   public languageOptions: any;
   public navigation: any;
   public selectedLanguage: any;
@@ -178,7 +179,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // get the currentUser details from localStorage
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
+    this.userDetails = JSON.parse(localStorage.getItem('employeeData'))
     // Subscribe to the config changes
     this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
       this.coreConfig = config;
