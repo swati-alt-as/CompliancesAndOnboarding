@@ -55,7 +55,7 @@ export class ReachedpickupComponent implements OnInit {
     this.spinnerService.show();
     this.order.getOrdersByType('reachedPickup').subscribe((result) => {
       this.spinnerService.hide();
-      if (!(result["items"].length === 0)) {
+      if (result["items"].length !== 0) {
         this.ordersList = result["items"];
         this.count = result["items"].length;
       }
@@ -68,7 +68,7 @@ export class ReachedpickupComponent implements OnInit {
     this.spinnerService.show();
     this.order.getDetails(ORDERID).subscribe((res) => {
       this.spinnerService.hide();
-      if (res["status"] == true && !(res["items"].length === 0)) {
+      if (res["status"] == true && (res["items"].length !== 0)) {
         this.message = res["message"];
         this.getDetails = res["items"];
         this.modalService.open(modalSuccess, {

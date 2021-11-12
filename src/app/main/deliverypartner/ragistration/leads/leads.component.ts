@@ -7,7 +7,6 @@ import { CoreTranslationService } from '@core/services/translation.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { DeliveryserviceService } from '../../../../services/deliverypartner/deliveryservice.service';
 import { ToastrserviceService } from '../../../../services/notification/toastrservice.service'
-import { HttpErrorResponse } from '@angular/common/http';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
@@ -62,7 +61,7 @@ export class LeadsComponent implements OnInit {
     this.spinnerService.show();
     this.delivery.getAll().subscribe((result) => {
       this.spinnerService.hide();
-      if (!(result["items"].length === 0)) {
+      if (result["items"].length !== 0) {
         this.partnerDetails = result["items"];
         this.count = result["items"].length;
       }

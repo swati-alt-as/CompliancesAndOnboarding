@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
 
 import { CoreTranslationService } from '@core/services/translation.service';
 import { locale as en } from '../../../main/sample/i18n/en';
 import { LeadsService } from '../../../services/business/leads.service';
-import { ToastrserviceService } from '../../../services/notification/toastrservice.service';
 
 
 @Component({
@@ -64,7 +63,7 @@ export class LeadsComponent implements OnInit {
     this.spinnerService.show();
     this.lead.getAllLeads().subscribe((result) => {
       this.spinnerService.hide();
-      if (!(result["items"].length === 0)) {
+      if (result["items"].length !== 0) {
         this.leadsList = result["items"];
         this.count = result["items"].length;
       }

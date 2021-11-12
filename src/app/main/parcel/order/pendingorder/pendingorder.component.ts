@@ -142,7 +142,7 @@ export class PendingorderComponent implements OnInit {
     this.spinnerService.show();
     this.orderService.getOrdersByType('processing').subscribe((result) => {
       this.spinnerService.hide();
-      if (!(result["items"].length === 0)) {
+      if (result["items"].length !== 0) {
         this.ordersList = result["items"];
         this.count = result["items"].length;
       }
@@ -151,7 +151,7 @@ export class PendingorderComponent implements OnInit {
     this.spinnerService.show();
     this.order.reasonForReject().subscribe((result) => {
       this.spinnerService.hide();
-      if (!(result["items"].length === 0)) {
+      if (result["items"].length !== 0) {
         this.reasonForRejectList = result["items"];
       }
     })
@@ -159,7 +159,7 @@ export class PendingorderComponent implements OnInit {
     this.spinnerService.show();
     this.delivery.getPartners().subscribe((result) => {
       this.spinnerService.hide();
-      if (!(result["items"].length === 0)) {
+      if (result["items"].length !== 0) {
         this.getPartnersList = result["items"];
       }
     })
@@ -172,7 +172,7 @@ export class PendingorderComponent implements OnInit {
     this.spinnerService.show();
     this.orderService.getDetails(ORDERID).subscribe((res) => {
       this.spinnerService.hide();
-      if (res["status"] == true && !(res["items"].length === 0)) {
+      if (res["status"] == true && (res["items"].length !== 0)) {
         this.message = res["message"];
         this.getDetails = res["items"];
         this.modalService.open(modalSuccess, {

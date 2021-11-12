@@ -20,7 +20,6 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from 'app/main/sample/sample.module';
 import { DashboardModule } from 'app/main/dashboard/dashboard.module';
 import { BusinessModule } from 'app/main/business/business.module';
-import { OrderModule } from 'app/main/parcel/order/order.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // for globar variables

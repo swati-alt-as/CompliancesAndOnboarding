@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { FormGroup, Validators, FormArray, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 //firebase
 import { AngularFireStorage } from "@angular/fire/compat/storage";
 import Stepper from 'bs-stepper';
@@ -250,12 +250,12 @@ export class BusinessregistrationComponent implements OnInit {
       this.businessSessionData = JSON.parse(localStorage.getItem('businessData'));
       this.registertoken = this.businessSessionData.token;
       this.ragister.getStatus(this.registertoken).subscribe((result) => {
-        if (!(result["items"].length === 0)) {
+        if (result["items"].length !== 0) {
           this.getStatus = result["items"];
         }
       })
       this.ragister.commissionRate(this.registertoken).subscribe((result) => {
-        if (!(result["items"].length === 0)) {
+        if (result["items"].length !== 0) {
           this.commissionRateList = result["items"];
         }
       })
@@ -263,13 +263,13 @@ export class BusinessregistrationComponent implements OnInit {
       this.getStatus.BasicDetails = 0;
     }
     this.business.getAllCategories().subscribe((result) => {
-      if (!(result["items"].length === 0)) {
+      if (result["items"].length !== 0) {
         this.categoriesList = result["items"];
       }
     })
 
     this.location.activeCountriesList().subscribe((result) => {
-      if (!(result["items"].length === 0)) {
+      if (result["items"].length !== 0) {
         this.countries = result["items"];
       }
     })
@@ -445,7 +445,7 @@ export class BusinessregistrationComponent implements OnInit {
   countryChangeHandler(country: any) {
     var countryArray = country.target.value.split("+++");
     this.location.activeStatesList(countryArray[0]).subscribe((result) => {
-      if (!(result["items"].length === 0)) {
+      if (result["items"].length !== 0) {
         this.states = result["items"];
       }
     })
@@ -454,7 +454,7 @@ export class BusinessregistrationComponent implements OnInit {
   stateChangeHandler(state: any) {
     var stateArray = state.target.value.split("+++");
     this.location.activeCitiesList(stateArray[0]).subscribe((result) => {
-      if (!(result["items"].length === 0)) {
+      if (result["items"].length !== 0) {
         this.cityList = result["items"];
       }
     })
@@ -463,7 +463,7 @@ export class BusinessregistrationComponent implements OnInit {
   cityChangeHandler(cityId: any) {
     var cityIdArray = cityId.target.value.split("+++");
     this.location.activeAreasList(cityIdArray[0]).subscribe((result) => {
-      if (!(result["items"].length === 0)) {
+      if (result["items"].length !== 0) {
         this.areaList = result["items"];
       }
     })
@@ -477,12 +477,12 @@ export class BusinessregistrationComponent implements OnInit {
         console.log(this.result["items"].code);
         this.registertoken = this.result["items"].token;
         this.ragister.getStatus(this.registertoken).subscribe((result) => {
-          if (!(result["items"].length === 0)) {
+          if (result["items"].length !== 0) {
             this.getStatus = result["items"];
           }
         })
         this.ragister.commissionRate(this.registertoken).subscribe((result) => {
-          if (!(result["items"].length === 0)) {
+          if (result["items"].length !== 0) {
             this.commissionRateList = result["items"];
           }
         })

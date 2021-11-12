@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { CoreTranslationService } from '@core/services/translation.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import Stepper from 'bs-stepper';
@@ -189,28 +189,28 @@ export class RegisterComponent implements OnInit {
     this.phonenumber = this.router.snapshot.params.phone;
     if (this.registertoken) {
       this.delivery.checkRegistrationStatusByToken(this.registertoken).subscribe((result) => {
-        if (!(result["items"].length === 0)) {
+        if (result["items"].length !== 0) {
           this.getStatus = result["items"];
           // console.log(this.getStatus)
         }
       })
       this.delivery.basicDetailsByToken(this.registertoken).subscribe((result) => {
-        if (!(result["items"].length === 0)) {
+        if (result["items"].length !== 0) {
           this.basicDetail = result["items"];
         }
       })
       this.delivery.kycByToken(this.registertoken).subscribe((result) => {
-        if (!(result["items"].length === 0)) {
+        if (result["items"].length !== 0) {
           this.kycDetail = result["items"];
         }
       })
       this.delivery.bankDetailsByToken(this.registertoken).subscribe((result) => {
-        if (!(result["items"].length === 0)) {
+        if (result["items"].length !== 0) {
           this.bankDetail = result["items"];
         }
       })
       this.delivery.vehicleDetailsByToken(this.registertoken).subscribe((result) => {
-        if (!(result["items"].length === 0)) {
+        if (result["items"].length !== 0) {
           this.vehicleDetail = result["items"];
         }
       })
@@ -219,13 +219,13 @@ export class RegisterComponent implements OnInit {
     }
 
     this.location.activeCountriesList().subscribe((result) => {
-      if (!(result["items"].length === 0)) {
+      if (result["items"].length !== 0) {
         this.countries = result["items"];
       }
     })
 
     this.common.bloodgroup().subscribe((result) => {
-      if (!(result["items"].length === 0)) {
+      if (result["items"].length !== 0) {
         this.bloodgroupList = result["items"];
       }
     })

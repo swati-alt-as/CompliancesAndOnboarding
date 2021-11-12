@@ -62,7 +62,7 @@ export class PendingverificationComponent implements OnInit {
     this.spinnerService.show();
     this.delivery.getUnverified().subscribe((result) => {
       this.spinnerService.hide();
-      if (!(result["items"].length === 0)) {
+      if (result["items"].length !== 0) {
         this.pendingList = result["items"];
         this.count = result["items"].length;
       }
@@ -86,7 +86,7 @@ export class PendingverificationComponent implements OnInit {
     this.spinnerService.show();
     this.delivery.getAllPartnerDetails(partnerId).subscribe((res) => {
       this.spinnerService.hide();
-      if (res["status"] == true && !(res["items"].length === 0)) {
+      if (res["status"] == true && (res["items"].length !== 0)) {
         this.message = res["message"];
         this.partnerDetails = res["items"];
         this.modalService.open(modalSuccess, {

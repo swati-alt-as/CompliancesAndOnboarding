@@ -13,7 +13,6 @@ import { CoreMediaService } from '@core/services/media.service';
 
 import { User } from 'app/auth/models';
 
-import { coreConfig } from 'app/app-config';
 import { Router } from '@angular/router';
 
 @Component({

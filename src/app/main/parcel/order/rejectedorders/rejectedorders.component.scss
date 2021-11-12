@@ -1,0 +1,19 @@
+.search {
+    margin-right: 7px;
+}
+
+.pagination-section ::ng-deep .ngx-pagination {
+    margin-left: 0;
+    margin-bottom: 3rem;
+    background-color: #ebe9f1;
+    border-radius: 20px;
+    padding: 7px;
+}
+
+.pagination-section ::ng-deep .ngx-pagination .current {
+    padding: 0.1875rem 0.625rem;
+    background: #22be67;
+    color: #fefefe;
+    cursor: default;
+    border-radius: 30px;
+}
