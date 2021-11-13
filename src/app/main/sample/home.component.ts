@@ -66,11 +66,11 @@ export class HomeComponent implements OnInit {
         })
       )
       .subscribe(url => {
-        if (url) {
-          console.log(url);
-        }
+        // if (url) {
+        //   console.log(url);
+        // }
       }), (error: HttpErrorResponse) => {
-        console.log(error.error.message, error.error.status)
+        // console.log(error.error.message, error.error.status)
       };
   }
   

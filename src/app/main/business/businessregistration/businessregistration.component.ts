@@ -581,8 +581,7 @@ export class BusinessregistrationComponent implements OnInit {
         })
       )
       .subscribe(url => {
-        if (url) {
-        }
+        
       }), (error: HttpErrorResponse) => {
         this.toastr.showError(error.error.message, error.error.status)
         // console.log(error)
@@ -707,8 +706,7 @@ export class BusinessregistrationComponent implements OnInit {
         })
       )
       .subscribe(url => {
-        if (url) {
-        }
+        
       }), (error: HttpErrorResponse) => {
         this.toastr.showError(error.error.message, error.error.status)
       };
@@ -805,8 +803,7 @@ export class BusinessregistrationComponent implements OnInit {
           })
         )
         .subscribe(url => {
-          if (url) {
-          }
+          
         }), (error: HttpErrorResponse) => {
           this.toastr.showError(error.error.message, error.error.status);
         };
@@ -915,8 +912,7 @@ export class BusinessregistrationComponent implements OnInit {
           })
         )
         .subscribe(url => {
-          if (url) {
-          }
+          
         }), (error: HttpErrorResponse) => {
           this.toastr.showError(error.error.message, error.error.status);
         };
@@ -1040,8 +1036,7 @@ export class BusinessregistrationComponent implements OnInit {
         })
       )
       .subscribe(aadharbackurl => {
-        if (aadharbackurl) {
-        }
+        
       }), (error: HttpErrorResponse) => {
         this.toastr.showError(error.error.message, error.error.status);
       };

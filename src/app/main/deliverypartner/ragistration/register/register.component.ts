@@ -286,7 +286,7 @@ export class RegisterComponent implements OnInit {
   countryChangeHandler(country: any) {
     var countryArray = country.target.value.split("+++");
     this.location.activeStatesList(countryArray[0]).subscribe((result) => {
-      if (!(result["items"].length === 0)) {
+      if (result["items"].length !== 0) {
         this.states = result["items"];
       }
     })
@@ -295,7 +295,7 @@ export class RegisterComponent implements OnInit {
   stateChangeHandler(state: any) {
     var stateArray = state.target.value.split("+++");
     this.location.activeCitiesList(stateArray[0]).subscribe((result) => {
-      if (!(result["items"].length === 0)) {
+      if (result["items"].length !== 0) {
         this.cityList = result["items"];
       }
     })
@@ -389,8 +389,7 @@ export class RegisterComponent implements OnInit {
         })
       )
       .subscribe(photourl => {
-        if (photourl) {
-        }
+        
       }), (error: HttpErrorResponse) => {
         this.toastr.showError(error.error.message, error.error.status)
         // console.log(error)
@@ -414,8 +413,7 @@ export class RegisterComponent implements OnInit {
         })
       )
       .subscribe(url => {
-        if (url) {
-        }
+        
       }), (error: HttpErrorResponse) => {
         this.toastr.showError(error.error.message, error.error.status)
       };
@@ -438,8 +436,7 @@ export class RegisterComponent implements OnInit {
         })
       )
       .subscribe(aadhaarfronturl => {
-        if (aadhaarfronturl) {
-        }
+        
       }), (error: HttpErrorResponse) => {
         this.toastr.showError(error.error.message, error.error.status)
       };
@@ -462,8 +459,7 @@ export class RegisterComponent implements OnInit {
         })
       )
       .subscribe(aadharbackurl => {
-        if (aadharbackurl) {
-        }
+        
       }), (error: HttpErrorResponse) => {
         this.toastr.showError(error.error.message, error.error.status)
       };
@@ -486,8 +482,7 @@ export class RegisterComponent implements OnInit {
         })
       )
       .subscribe(panurl => {
-        if (panurl) {
-        }
+        
       }), (error: HttpErrorResponse) => {
         this.toastr.showError(error.error.message, error.error.status)
       };
@@ -551,7 +546,7 @@ export class RegisterComponent implements OnInit {
       "token": this.registertoken,
       "app_version": environment.app_version
     };
-    console.log(postData)
+    // console.log(postData)
     this.delivery.bankDetails(postData).subscribe((resultData) => {
       this.result = resultData;
       if (this.result["status"] == true) {
@@ -586,7 +581,7 @@ export class RegisterComponent implements OnInit {
   }
 
   haveVehicle(event) {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     if (!(event.target.value == "None")) {
       this.vehicleDetails.controls.VehicleName.setValidators(this.setRequired());
       this.vehicleDetails.controls.VehicleNumber.setValidators(this.setRequired());
@@ -604,7 +599,7 @@ export class RegisterComponent implements OnInit {
 
   addvehicleDetails() {
 
-    if (!(this.vehicleDetails.value["vehicle_type"] == "None")) {
+    if (this.vehicleDetails.value["vehicle_type"] != "None") {
       var n = "insurance.jpg";
       const insurancefilePath = `delivery/${this.registertoken}/${n}`;
       const insurancefileRef = this.storage.ref(insurancefilePath);
@@ -623,8 +618,7 @@ export class RegisterComponent implements OnInit {
           })
         )
         .subscribe(insuranceurl => {
-          if (insuranceurl) {
-          }
+         
         }), (error: HttpErrorResponse) => {
           this.toastr.showError(error.error.message, error.error.status)
           // console.log(error)
@@ -648,8 +642,7 @@ export class RegisterComponent implements OnInit {
           })
         )
         .subscribe(licenceurl => {
-          if (licenceurl) {
-          }
+          
         }), (error: HttpErrorResponse) => {
           this.toastr.showError(error.error.message, error.error.status)
         };
